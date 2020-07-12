@@ -10927,4 +10927,9 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
+.list-group-item{
+  border: none;
+}
+.list-group-item:hover{
+  background: rgb(221, 218, 218);
+}
