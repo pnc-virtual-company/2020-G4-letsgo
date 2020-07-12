@@ -85,7 +85,7 @@ class EventController extends Controller
 
 
 
-    public function ExploreView(){
+    public function showExploreEventView(){
         return view('Events.explore');
     }
 }
