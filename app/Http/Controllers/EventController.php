@@ -12,9 +12,9 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $event = Event::all();
+        return view('Events.event',compact('event'));
     }
 
     /**
