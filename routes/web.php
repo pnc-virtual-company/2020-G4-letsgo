@@ -24,3 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/yourEvent', 'EventController@viewYourEvent')->name('yourEvent');
 Route::resource('categories','CategoryController');
 Route::resource('events','EventController');
+Route::get('explore','EventController@showExploreEventView')->name('showExploreEventView');

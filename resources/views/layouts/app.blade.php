@@ -42,7 +42,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Explore Events</a>
+                        <a href="{{route('showExploreEventView')}}" class="nav-link">Explore Events</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('yourEvent')}}" class="nav-link">Your Events</a>

@@ -82,4 +82,10 @@ class EventController extends Controller
     {
         //
     }
+
+
+
+    public function showExploreEventView(){
+        return view('Events.explore');
+    }
 }
