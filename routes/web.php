@@ -25,3 +25,5 @@ Route::resource('categories','CategoryController');
 Route::resource('events','EventController');
 Route::get('explore','EventController@showExploreEventView')->name('showExploreEventView');
 Route::get('yourEventsView','EventController@showYourEventView')->name('yourEventsView');
+Route::resource('users','UserController');
+Route::get('delete{id}', 'UserController@deleteProfile')->name('deleteProfile');

@@ -20,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- icon link -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -89,23 +92,44 @@
         </main>
     </div>
 </body>
+@if(Auth::user())
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Profile view</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
             <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <form action="{{route('users.update', Auth::id())}}" class="md-form" method="post" enctype="multipart/form-data" >
+                    @csrf
+                    @method('put')
+                    <div class="container">
+                    <h5>Edit Profile</h5>
+                    <div class="row">
+                        <div class="col-8">
+                            <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
+                            <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
+                            <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4">
+                        </div>
+                        <div class="col-4">
+                            <div class="img">
+                                <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
+                                <div class="image-upload text-center">
+                                   <label for="file-input">
+                                        <i class="material-icons m-2 text-primary">create</i>
+                                   </label>
+
+                                   <input id="file-input" type="file" name="profile"/>
+                                    <a href="{{route('deleteProfile', Auth::id())}}"><i class="material-icons m-2 text-danger">delete</i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <button class="btn text-warning float-right" type="submit">Update</button>
+                        <a href="#" class="btn float-right" data-dismiss="modal">Discard</a>
+                    </div>
+                </form>
             </div>
         </div>
-
     </div>
 </div>
+@endif
 </html>
