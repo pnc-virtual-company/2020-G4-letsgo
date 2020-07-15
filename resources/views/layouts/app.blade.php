@@ -45,7 +45,7 @@
                         <a href="{{route('showExploreEventView')}}" class="nav-link">Explore Events</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">Your Events</a>
+                            <a href="{{route('yourEventsView')}}" class="nav-link">Your Events</a>
                         </li>
                         @if(auth::user()->role == 1)
                         <li class="nav-item dropdown">
