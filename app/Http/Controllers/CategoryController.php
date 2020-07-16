@@ -39,11 +39,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->category; 
-        $category->save();
-
-        return back();
+        if(Auth::id()==1){
+            $category = new Category;
+            $request -> validate([
+                'category' => 'required|unique:categories,name',
+            ]);
+            $category->name = $request->get('category');
+            $category->save();
+            return back();
+        }
+    
     }
 
     /**
