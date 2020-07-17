@@ -14,11 +14,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         $user = User::find(auth::id());
         $categories = Category::all();
-        return view('categoryView',compact('categories'));
+        return view('Categorys.categoryView',compact('categories'));
     }
 
     /**
@@ -89,5 +88,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         //
+    }
+
+    public function searchBar(Request $request){
+        $search = $request->get('search');
+        $categories = Category:: where('name','like', '%'.$search. '%')->get();
+        return view('Categorys.categoryView',compact('categories'));
     }
 }
