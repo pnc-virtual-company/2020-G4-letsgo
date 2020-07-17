@@ -7,7 +7,7 @@
                 <div class="input-group">
                     <input type="text" class="form-control" name="search" placeholder="Search"> <span class="input-group-btn">
                         <button type="submit" class="btn btn-default">
-                            <span class="fa fa-search"></span>
+                            <span class=""></span>
                         </button>
                     </span>
                 </div>
@@ -37,8 +37,9 @@
                     <form action="{{route('categories.store')}}" method="POST">
                     @csrf
                     <div class="form-group">
-                            <input type="text" placeholder="Enter name category here" name="category" class="form-control">
+                            <input type="text" id="category" placeholder="Enter name category here" name="category" class="form-control">
                     </div>
+                    <span class="" id="#message" class="text-warning"></span>
                     <button href="" class="btn btn-default text-warning mt-3 float-right" type="submit">CREATE</button>
                     <button href="" class="btn btn-default text-dark mt-3 float-right ml-3" data-dismiss="modal">DISCARD</button>
                   </form>
@@ -57,4 +58,12 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+          alert(msg);
+        }
+    </script>
 @endsection

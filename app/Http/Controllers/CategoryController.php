@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use App\Category;
+use DB;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -39,18 +40,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::id()==1){
-            $category = new Category;
-            $request -> validate([
-                'category' => 'required|unique:categories,name',
-            ]);
-            $category->name = $request->get('category');
-            $category->save();
-            return back();
+        $categories = Category::all();
+        $category = new Category;
+        $category->name = ucfirst($request->get('category'));
+            if($categories->pluck('name')->contains($category->name)){
+                return redirect('categories')->with('alert', 'Sorry! This category is already exist.');
+            }else {
+        $category->save();
+            return redirect('categories');
         }
-    
     }
-
+    
     /**
      * Display the specified resource.
      *
