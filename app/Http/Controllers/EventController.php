@@ -33,9 +33,9 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function viewYourEvent(Request $request)
+    public function store(Request $request)
     {
-        return view('Events.yourEvent');
+        //
     }
 
     /**
@@ -87,5 +87,8 @@ class EventController extends Controller
 
     public function showExploreEventView(){
         return view('Events.explore');
+    }
+    public function showYourEventView(){
+        return view('Events.yourEvents');
     }
 }
