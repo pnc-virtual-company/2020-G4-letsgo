@@ -1,0 +1,42 @@
+[
+    {
+        "cityName": "Phnom Penh",
+        "cityCountry": "Phnom Penh, Cambodia"
+    },
+    {
+        "cityName": "Bang Kork",
+        "cityCountry": "Bang Kork, Thialand"
+    },
+    {
+        "cityName": "Ha Nuy",
+        "cityCountry": "Ha Nuy, Vietnam"
+    },
+    {
+        "cityName": "Veang Chann",
+        "cityCountry": "Veang Chann, Lao"
+    },
+    {
+        "cityName": "Sydney",
+        "cityCountry": "Sydney, Australia"
+    },
+    {
+        "cityName": "New York",
+        "cityCountry": "New York, USA"
+    },
+    {
+        "cityName": "Manila",
+        "cityCountry": "Manila, Philippiness"
+    },
+    {
+        "cityName": "Paris",
+        "cityCountry": "Paris, France"
+    },
+    {
+        "cityName": "Kola Lam Pour",
+        "cityCountry": "Kola Lam Pour, Singapore"
+    },
+    {
+        "cityName": "Delhi",
+        "cityCountry": "Delhi, India"
+    }
+]
