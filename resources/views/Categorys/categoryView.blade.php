@@ -20,9 +20,9 @@
                         <td>{{$categ->name}}</td>
                         <td>
                            <div class="action">
-                                <a href="{{route('remove', $categ->id)}}" class="hoverbtn float-right" style="display: none;"><i class="fa fa-trash fa-lg"   style="color: red" aria-hidden="true"></i></a>
-                                <a href="" class="hoverbtn float-right" style="display: none;">|</a>
-                                <a href="" class="hoverbtn float-right" style="display: none;"><i class="fa fa-pencil fa-lg " aria-hidden="true"></i></a>
+                                <a href="" class="hoverbtn float-right text-danger" ><i class="fas fa-trash fa-lg"></i></a>
+                                <a href="" class="hoverbtn float-right" >|</a>
+                                <a href="" class="hoverbtn float-right" ><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
                            </div>
                         </td>
                     </tr>
@@ -31,11 +31,4 @@
             </table>
         </div>
     </div>
-
-    <script>
-    $(document).ready(function() { 
-      $("tr").mouseover(function(){$(".hoverbtn").show();});
-      $("tr").mouseleave(function(){$(".hoverbtn").hide();});
-    }); 
-    </script>
 @endsection
