@@ -20,7 +20,7 @@
                         <td>{{$categ->name}}</td>
                         <td>
                            <div class="action">
-                                <a href="" class="hoverbtn float-right" style="display: none;"><i class="fa fa-trash fa-lg"   style="color: red" aria-hidden="true"></i></a>
+                                <a href="{{route('remove', $categ->id)}}" class="hoverbtn float-right" style="display: none;"><i class="fa fa-trash fa-lg"   style="color: red" aria-hidden="true"></i></a>
                                 <a href="" class="hoverbtn float-right" style="display: none;">|</a>
                                 <a href="" class="hoverbtn float-right" style="display: none;"><i class="fa fa-pencil fa-lg " aria-hidden="true"></i></a>
                            </div>
