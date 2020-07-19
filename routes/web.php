@@ -22,6 +22,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController');
+Route::get('removeCategory{id}', 'CategoryController@removeCategory')->name('remove');
 Route::get('/search','CategoryController@searchBar')->name('searchBar');
 Route::resource('events','EventController');
 Route::get('explore','EventController@showExploreEventView')->name('showExploreEventView');
