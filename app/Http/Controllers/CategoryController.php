@@ -38,11 +38,16 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->category; 
+        $categories = Category::all();
+        $category = new Category;
+        $category->name = ucfirst($request->get('category'));
+            if($categories->pluck('name')->contains($category->name)){
+                return redirect('categories')->with('alert', 'Sorry! This category is already exist.');
+            }else {
         $category->save();
-
-        return back();
+            return redirect('categories');
+        }
+        
     }
 
     /**
