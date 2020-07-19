@@ -95,4 +95,9 @@ class CategoryController extends Controller
         $categories = Category:: where('name','like', '%'.$search. '%')->get();
         return view('Categorys.categoryView',compact('categories'));
     }
+    public function removeCategory($id){
+        $category = Category::find($id);
+        $category->delete();
+        return back();
+    }
 }
