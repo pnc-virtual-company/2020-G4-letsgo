@@ -44,8 +44,7 @@
                     <td>{{$categ->name}}</td>
                     <td>
                         <div class="action">
-                            <a href="" class="hoverbtn float-right text-danger"><i class="fas fa-trash fa-lg"></i></a>
-                            <a href="" class="hoverbtn float-right">|</a>
+                            <a href="{{route('remove', $categ->id)}}" class="hoverbtn float-right text-danger"><i class="fas fa-trash fa-lg"></i></a>
                             <a href="" class="hoverbtn float-right"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
                         </div>
                     </td>
@@ -88,7 +87,7 @@
                                 <td><b>${element.name}</b></td>
                                 <td>
                                       <div class="action">
-                                          <a href="" class="hoverbtn float-right text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                                          <a href="${route('remove', $categ->id)}" class="hoverbtn float-right text-danger"><i class="fas fa-trash fa-lg"></i></a>
                                           <a href="" class="hoverbtn float-right">|</a>
                                           <a href="" class="hoverbtn float-right"><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
                                       </div>
