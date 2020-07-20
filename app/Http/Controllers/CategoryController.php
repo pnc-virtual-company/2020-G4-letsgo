@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use App\Category;
 use Illuminate\Http\Request;
+use DB;
 
 class CategoryController extends Controller
 {
@@ -99,10 +100,13 @@ class CategoryController extends Controller
         //
     }
 
-    public function searchBar(Request $request){
-        $search = $request->get('search');
-        $categories = Category:: where('name','like', '%'.$search. '%')->get();
-        return view('Categorys.categoryView',compact('categories'));
+    public function searchCategory(Request $request){
+        $category = $request->get('data');
+        if($request->ajax()){
+            $categories = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->get();
+            return $categories;
+        }
+        
     }
     public function removeCategory($id){
         $category = Category::find($id);
