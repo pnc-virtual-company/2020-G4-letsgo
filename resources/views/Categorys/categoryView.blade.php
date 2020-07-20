@@ -13,7 +13,7 @@
             {{-- View categories all --}}
             <h3>Categories</h3>
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary float-right m-3" data-toggle="modal" data-target="#myModal">
                 Create
         </button>
         <!-- The Modal -->
@@ -47,9 +47,38 @@
                         <td>{{$categ->name}}</td>
                         <td>
                            <div class="action">
-                                <a href="" class="hoverbtn float-right text-danger" ><i class="fas fa-trash fa-lg"></i></a>
-                                <a href="" class="hoverbtn float-right" >|</a>
-                                <a href="" class="hoverbtn float-right" ><i class="fa fa-edit fa-lg" aria-hidden="true"></i></a>
+
+                            <button class="btn float-right text-danger " data-toggle="modal" data-target="">
+                              <i class="fa fa-trash fa-lg"></i>
+                            </button>
+                            <button type="button" class="btn" data-toggle="modal" data-target="#editModal{{$categ->id}}" style="float:right;"><i class="fas fa-edit fa-lg"></i></button>
+                            <div id="editModal{{$categ->id}}" class="modal fade" role="dialog">
+                              <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h4 class="modal-title">Edit Category</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                  <form action="{{route('categories.update',$categ->id)}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                        <input type="text" name="category" id="category" class="form-control" value="{{$categ->name}}">
+                                        <button  type="submit" class="btn btn-warning float-right mt-2">Edit</button>
+                                        <a href="#" class="btn btn-danger mt-2" data-dismiss="modal">Cancel</a>
+
+                                  </form>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
+                                
+                                
+                                
+
+                                  
                            </div>
                         </td>
                     </tr>
