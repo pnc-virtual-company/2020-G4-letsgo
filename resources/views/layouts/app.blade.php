@@ -69,7 +69,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#myModal">Profile</a>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#userProfile">Profile</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -92,7 +92,7 @@
     </div>
 </body>
 @if(Auth::user())
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="userProfile" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
