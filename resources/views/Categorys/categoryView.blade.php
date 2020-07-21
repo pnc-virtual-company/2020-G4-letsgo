@@ -61,7 +61,7 @@
                                                 @method('PUT')
                                                 <input type="text" name="category" id="category" class="form-control" value="{{$categ->name}}">
                                                 <button type="submit" class="btn btn-warning float-right mt-2">Edit</button>
-                                                <a href="#" class="btn btn-danger mt-2" data-dismiss="modal">Cancel</a>
+                                                <a href="{{route('categories.index')}}" class="btn btn-danger mt-2">Cancel</a>
 
                                             </form>
                                         </div>
