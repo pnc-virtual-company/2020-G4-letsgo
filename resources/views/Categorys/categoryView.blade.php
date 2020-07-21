@@ -44,7 +44,7 @@
                     <td>{{$categ->name}}</td>
                     <td>
                         <div class="action">
-                            <a href="{{route('remove', $categ->id)}}" class="hoverbtn float-right text-danger"><i class="fas fa-trash fa-lg"></i></a>
+                            <a class="hoverbtn float-right text-danger" data-target="#delete" data-toggle="modal"><i class="fas fa-trash fa-lg"></i></a>
 
                             <button type="button" class="btn float-right" data-toggle="modal" style="margin-top: -8px;" data-target="#editModal{{$categ->id}}" style="float:right;"><i class="fas fa-edit fa-lg"></i></button>
                             <div id="editModal{{$categ->id}}" class="modal fade" role="dialog">
@@ -78,6 +78,22 @@
         </table>
     </div>
 </div>
+<!--Modal massage delete-->
+<div class="modal fade" id="delete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5>Remove Item?</h5>
+                        <p>Are you sure you want to remove this select item?</p>
+                        <form action="{{route('remove', $categ->id)}}" method="Get">
+                            @csrf
+                            <button class="btn btn-default text-warning mt-3 float-right" type="submit">REMOVE</button>
+                            <button class="btn btn-default text-dark mt-3 float-right ml-3" data-dismiss="modal">DON'T REMOVE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <script>
     var msg = '{{Session::get('
