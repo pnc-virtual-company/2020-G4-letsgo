@@ -13,13 +13,13 @@
             {{-- View categories all --}}
             <h3>Categories</h3>
             <!-- Button to Open the Modal -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#create">
                 Create
         </button>
         <!-- The Modal -->
-<div class="modal" id="myModal">
+<div class="modal fade" id="create">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content ">
       
             <!-- Modal Header -->
             <div class="modal-header">
