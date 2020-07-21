@@ -100,14 +100,6 @@ class CategoryController extends Controller
         //
     }
 
-    public function searchCategory(Request $request){
-        $category = $request->get('data');
-        if($request->ajax()){
-            $categories = DB::table('categories')->where('name', 'LIKE', '%' . $category . '%')->get();
-            return $categories;
-        }
-        
-    }
     public function removeCategory($id){
         $category = Category::find($id);
         $category->delete();

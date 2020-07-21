@@ -29,4 +29,4 @@ Route::get('explore','EventController@showExploreEventView')->name('showExploreE
 Route::get('yourEventsView','EventController@showYourEventView')->name('yourEventsView');
 Route::resource('users','UserController');
 Route::get('delete{id}', 'UserController@deleteProfile')->name('deleteProfile');
-Route::get('search', 'CategoryController@searchCategory')->name('search');
+
