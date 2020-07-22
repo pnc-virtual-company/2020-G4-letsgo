@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use App\Category;
 use Illuminate\Http\Request;
+use DB;
+
 
 class CategoryController extends Controller
 {
@@ -38,16 +40,24 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $categories = Category::all();
-        $category = new Category;
-        $category->name = ucfirst($request->get('category'));
-            if($categories->pluck('name')->contains($category->name)){
-                return redirect('categories')->with('alert', 'Sorry! This category is already exist.');
-            }else {
-        $category->save();
-            return redirect('categories');
+        if(Auth::id()==1){
+            $category = new Category;
+            $request -> validate([
+                'category' => 'required|unique:categories,name',
+            ]);
+            $category->name = $request->get('category');
+            $category->save();
+            return back();
         }
-        
+    
+    }
+
+    public function existCategory(Request $request) {
+        $category = $request->get('result');
+        if($request->ajax()){
+            $categoryData = DB::table('categories')->where('name',$category)->get();
+            return $categoryData;
+        }
     }
 
     /**
@@ -69,7 +79,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        
     }
 
     /**
@@ -79,9 +89,13 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->category;
+        $category->save();
+        return back();
+
     }
 
     /**
@@ -95,11 +109,6 @@ class CategoryController extends Controller
         //
     }
 
-    public function searchBar(Request $request){
-        $search = $request->get('search');
-        $categories = Category:: where('name','like', '%'.$search. '%')->get();
-        return view('Categorys.categoryView',compact('categories'));
-    }
     public function removeCategory($id){
         $category = Category::find($id);
         $category->delete();
