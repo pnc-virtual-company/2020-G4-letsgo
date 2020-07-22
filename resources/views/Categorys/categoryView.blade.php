@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('Categorys.editCategory')
 <div class="container">
     <div class="col-12">
         <form action="/search" method="GET">
@@ -42,10 +43,12 @@
                 @foreach ($categories as $categ)
                 <tr>
                     <td>{{$categ->name}}</td>
+                    <td style="opacity:0">{{$categ->id}}</td>
                     <td>
                         <div class="action">
                             <a class="hoverbtn float-right text-danger" data-target="#delete" data-toggle="modal"><i class="fas fa-trash fa-lg"></i></a>
-                            <!--Modal massage delete-->
+                            <button type="button" class="btn float-right editCategory" style="float:right;"><i class="fas fa-edit fa-lg"></i></button>
+                             <!--Modal massage delete-->
                             <div class="modal fade" id="delete">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -61,30 +64,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn float-right" data-toggle="modal" style="margin-top: -8px;" data-target="#editModal{{$categ->id}}" style="float:right;"><i class="fas fa-edit fa-lg"></i></button>
-                            <div id="editModal{{$categ->id}}" class="modal fade" role="dialog">
-                                <div class="modal-dialog">
-
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title">Edit Category</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('categories.update',$categ->id)}}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <input type="text" name="category" id="category" class="form-control" value="{{$categ->name}}">
-                                                <button type="submit" class="btn btn-warning float-right mt-2">Edit</button>
-                                                <a href="{{route('categories.index')}}" class="btn btn-danger mt-2">Cancel</a>
-
-                                            </form>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
                         </div>
                     </td>
                 </tr>
