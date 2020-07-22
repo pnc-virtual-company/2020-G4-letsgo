@@ -8,7 +8,6 @@ use App\Category;
 use Illuminate\Http\Request;
 use DB;
 
-
 class CategoryController extends Controller
 {
     /**
@@ -52,6 +51,13 @@ class CategoryController extends Controller
     
     }
 
+    /**
+     * Get date to compair if it's already has in datebase
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function existCategory(Request $request) {
         $category = $request->get('result');
         if($request->ajax()){
@@ -89,7 +95,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function editCategory(Request $request, $id)
     {
         $category = Category::find($id);
         $category->name = $request->category;

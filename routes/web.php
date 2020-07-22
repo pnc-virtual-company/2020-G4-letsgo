@@ -22,12 +22,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController');
-Route::get('existCategory','CategoryController@existCategory')->name('existCategory');
-Route::get('removeCategory{id}', 'CategoryController@removeCategory')->name('remove');
+Route::delete('removeCategory/{id}', 'CategoryController@removeCategory')->name('remove');
 Route::get('/search','CategoryController@searchBar')->name('searchBar');
 Route::resource('events','EventController');
 Route::get('explore','EventController@showExploreEventView')->name('showExploreEventView');
 Route::get('yourEventsView','EventController@showYourEventView')->name('yourEventsView');
 Route::resource('users','UserController');
 Route::get('delete{id}', 'UserController@deleteProfile')->name('deleteProfile');
+Route::put('editCategory/{id}', 'CategoryController@editCategory');
+Route::get('existCategory','CategoryController@existCategory')->name('existCategory');
 
