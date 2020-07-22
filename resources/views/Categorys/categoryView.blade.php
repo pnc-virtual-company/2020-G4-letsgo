@@ -4,11 +4,10 @@
 @include('Categorys.removeCategory')
 <div class="container">
     <div class="col-12">
-        <form action="/search" method="GET">
-            <div class="input-group mb-5">
-                <input class="form-control" id="search" type="text" placeholder="Search..">
-            </div>
-        </form>
+ 
+        <div class="input-group mb-5">
+            <input class="form-control" id="search" type="text" placeholder="Search..">
+        </div>
         {{-- View categories all --}}
         <h3>Categories</h3>
         <!-- Button to Open the Modal -->
