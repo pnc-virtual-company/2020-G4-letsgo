@@ -80,7 +80,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function editCategory(Request $request, $id)
     {
         $category = Category::find($id);
         $category->name = $request->category;
