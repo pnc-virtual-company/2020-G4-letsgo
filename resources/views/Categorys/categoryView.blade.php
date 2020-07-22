@@ -31,9 +31,10 @@
                             @csrf
                             <div class="form-group">
                                 <input type="text" id="category" placeholder="Enter name category here" name="category" class="form-control">
+                                <span id="message" class="text-danger"></span>
                             </div>
-                            <button href="" class="btn btn-default text-warning mt-3 float-right" type="submit">CREATE</button>
-                            <button href="" class="btn btn-default text-dark mt-3 float-right ml-3" data-dismiss="modal">DISCARD</button>
+                            <button href="" class="btn btn-default text-primary mt-3 float-right" type="submit">CREATE</button>
+                            <button href="" class="btn btn-default text-danger mt-3 float-right ml-3" data-dismiss="modal">DISCARD</button>
                         </form>
                     </div>
                 </div>
@@ -60,13 +61,29 @@
 
 
 <script>
-    var msg = '{{Session::get('
-    alert ')}}';
-    var exist = '{{Session::has('
-    alert ')}}';
-    if (exist) {
-        alert(msg);
-    }
+    $(document).ready(function(){
+        $(document).on('keyup','#category',function(){
+            var result = $(this).val();
+            message_exist(result);
+        });
+
+        message_exist();
+        function message_exist(result){
+            $.ajax({
+                url:"{{route('existCategory')}}",
+                method:"get",
+                data:{result:result},
+                dataType:'json',
+                success:function(message){
+                    if(message != ''){
+                        $('#message').html('This category already existed.');
+                    }else{
+                        $('#message').html('');
+                    }
+                }
+            });
+        }
+    });
 
     $(document).ready(function() {
         $("#search").on("keyup", function() {
