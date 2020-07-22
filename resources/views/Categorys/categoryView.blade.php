@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('Categorys.editCategory')
+@include('Categorys.removeCategory')
 <div class="container">
     <div class="col-12">
         <form action="/search" method="GET">
@@ -46,24 +47,8 @@
                     <td style="opacity:0">{{$categ->id}}</td>
                     <td>
                         <div class="action">
-                            <a class="hoverbtn float-right text-danger" data-target="#delete" data-toggle="modal"><i class="fas fa-trash fa-lg"></i></a>
+                            <a class="delete float-right text-danger" id="deleteCategory" data-id="{{$categ->id}}" data-target="#delete" data-toggle="modal"><i class="fas fa-trash fa-lg"></i></a>
                             <button type="button" class="btn float-right editCategory" style="float:right;"><i class="fas fa-edit fa-lg"></i></button>
-                             <!--Modal massage delete-->
-                            <div class="modal fade" id="delete">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <h5>Remove Item?</h5>
-                                            <p>Are you sure you want to remove this select item?</p>
-                                            <form action="{{route('remove', $categ->id)}}" method="Get">
-                                                @csrf
-                                                <button class="btn btn-default text-warning mt-3 float-right" type="submit">REMOVE</button>
-                                                <button class="btn btn-default text-dark mt-3 float-right ml-3" data-dismiss="modal">DON'T REMOVE</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </td>
                 </tr>
