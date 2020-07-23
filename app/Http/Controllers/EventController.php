@@ -106,9 +106,10 @@ class EventController extends Controller
         return view('Events.explore');
     }
     public function showYourEventView(){
+        $events = Event::all();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
-        return view('Events.yourEvents', compact('categories', 'data'));
+        return view('Events.yourEvents', compact('categories', 'data','events'));
     }
 }
