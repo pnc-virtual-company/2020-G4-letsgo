@@ -22,6 +22,13 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- icon link -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        $(document).ready(function(){
+            $("#showField").click(function(){
+                $("#newPwd").toggle();
+            })
+        })
+    </script>
 </head>
 <body>
     <div id="app">
@@ -93,7 +100,7 @@
 </body>
 @if(Auth::user())
 <div class="modal fade" id="userProfile" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-body">
@@ -106,24 +113,22 @@
                         <div class="col-8">
                             <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
                             <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
-                            <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4">
+                            <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4 mb-2">
+                            <a href="#" id="showField">Add New Password</a>
+                            <div id="newPwd" class="mb-3">
+                                <input type="password" name="password" id="pwd" class="form-control mt-2" placeholder="New password">
+                                <input type="password" name="password" id="confrimPwd" class="form-control mt-4" placeholder="Confirm new password">
+                            </div>
                         </div>
                         <div class="col-4">
                             <div class="img">
                                 <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
-                                <div class="image-upload text-center">
-                                   <label for="file-input">
-                                        <i class="material-icons m-2 text-primary">create</i>
-                                   </label>
-
-                                   <input id="file-input" type="file" name="profile"/>
-                                    <a href="{{route('deleteProfile', Auth::id())}}"><i class="material-icons m-2 text-danger">delete</i></a>
-                                </div>
+                                <input type="file" name="profile" id="profile" class="mt-3 mb-4">
                             </div>
                         </div>
                     </div>
-                        <button class="btn text-warning float-right" type="submit">Update</button>
-                        <a href="#" class="btn float-right" data-dismiss="modal">Discard</a>
+                        <button class="btn btn-warning float-right" type="submit">Update</button>
+                        <a href="#" class="btn btn-danger float-right mr-4" data-dismiss="modal">Discard</a>
                     </div>
                 </form>
             </div>

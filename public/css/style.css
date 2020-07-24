@@ -4,3 +4,6 @@
 .editCategory{
   margin-top: -8px;
 }
+#newPwd{
+  display: none;
+}
