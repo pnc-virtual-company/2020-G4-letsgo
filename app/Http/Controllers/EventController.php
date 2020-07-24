@@ -37,7 +37,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        
+       
         $event = new Event();
         $event->location = $request->city;
         $event->title = $request->title;
@@ -49,7 +49,11 @@ class EventController extends Controller
         $event->organizer = auth::id();
         $event->category_id = $request->categoryid;
         if ($request->hasfile('eventPicture')){
-            $event->eventPicture = $request->eventPicture;
+            $file = $request->file('eventPicture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). ".".$extension;
+            $file->move('image/', $filename);
+            $event->eventPicture = $filename;   
         }
         $event->save();
         return redirect('yourEventsView');

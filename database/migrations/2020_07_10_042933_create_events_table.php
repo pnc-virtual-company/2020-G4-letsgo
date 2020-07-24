@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->dateTimeTz('endDate',0);
             $table->time('startTime', 0);
             $table->time('endTime', 0);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('organizer');
             $table->string('eventPicture')->default('events.jpg');
             $table->foreign('organizer')
