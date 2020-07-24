@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-12 mt-5">
         @foreach($events as $event)
+        @if(Auth::id() == $event->organizer)
             <div class="card mt-2">
                 <div class="container">
                     <div class="row">
@@ -37,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
