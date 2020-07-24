@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -98,5 +101,14 @@ class UserController extends Controller
         $user->profile = "user.png";
         $user->save();
         return redirect('/home');
+    }
+    public function changePassword(Request $request){
+        $user = User::find(Auth::id());
+        if($request->newPassword == $request->comfirmPassword){
+            $user->password = Hash::make($request['newPassword']);;
+
+            $user->save();
+        }
+        return back();
     }
 }

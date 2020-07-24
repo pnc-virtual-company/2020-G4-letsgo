@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+@include('Events.createEvent')
 <div class="container">
     <div class="row">
         <div class="col-12">
             <h2>Your Event</h2>
-            <a href="#" class="btn btn-primary float-right">CREATE</a>
+            <button class="btn btn-primary float-right"  data-toggle="modal" data-target="#eventModal">Create</button>
         </div>
     </div>
     <div class="row">
@@ -32,6 +33,5 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>
 @endsection
