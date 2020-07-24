@@ -15,8 +15,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $event = Event::all();
-        return view('Events.event',compact('event'));
+        $events = Event::all();
+        return view('Events.event',compact('events'));
     }
 
     /**
@@ -116,4 +116,5 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.yourEvents', compact('categories', 'data','events'));
     }
+
 }
