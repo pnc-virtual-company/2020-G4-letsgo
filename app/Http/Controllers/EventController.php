@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use Illuminate\Http\Request;
+use App\Category;
+use Auth;
 
 class EventController extends Controller
 {
@@ -35,7 +37,26 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $event = new Event();
+        $event->location = $request->city;
+        $event->title = $request->title;
+        $event->startDate = $request->startDate;
+        $event->endDate = $request->endDate;
+        $event->startTime = $request->startTime;
+        $event->endTime = $request->endTime;
+        $event->description = $request->description;
+        $event->organizer = auth::id();
+        $event->category_id = $request->categoryid;
+        if ($request->hasfile('eventPicture')){
+            $file = $request->file('eventPicture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). ".".$extension;
+            $file->move('image/', $filename);
+            $event->eventPicture = $filename;   
+        }
+        $event->save();
+        return redirect('yourEventsView');
     }
 
     /**
@@ -89,6 +110,9 @@ class EventController extends Controller
         return view('Events.explore');
     }
     public function showYourEventView(){
-        return view('Events.yourEvents');
+        $categories = Category::all();
+        $jsonString = file_get_contents(base_path('resources/cities.json'));
+        $data = json_decode($jsonString, true);
+        return view('Events.yourEvents', compact('categories', 'data'));
     }
 }
