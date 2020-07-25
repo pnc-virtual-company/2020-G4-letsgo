@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h5>Cancel Event ?</h5>
-                <p>Do you want to delete this Events now ?</p>
+                <p>Do you want to cancel this Events now ?</p>
                 <form action="" method="POST" id="deleteEventsInfo">
                     @csrf
                     @method('delete')
