@@ -106,7 +106,7 @@ class EventController extends Controller
         return view('Events.explore');
     }
     public function showYourEventView(){
-        $events = Event::all();
+        $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
