@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('categories','CategoryController');
 Route::delete('removeCategory/{id}', 'CategoryController@removeCategory')->name('remove');
 Route::resource('events','EventController');
+Route::delete('deleteEvent/{id}','EventController@deleteEvent')->name('deleteEvent');
 Route::get('explore','EventController@showExploreEventView')->name('showExploreEventView');
 Route::get('yourEventsView','EventController@showYourEventView')->name('yourEventsView');
 Route::resource('users','UserController');
