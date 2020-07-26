@@ -18,8 +18,8 @@ class CreateEventsTable extends Migration
             $table->integer('numberOfMember')->default(1);
             $table->string('location');
             $table->string('title');
-            $table->dateTime('startDate',0);
-            $table->dateTimeTz('endDate',0);
+            $table->date('startDate',0);
+            $table->date('endDate',0);
             $table->time('startTime', 0);
             $table->time('endTime', 0);
             $table->string('description');
