@@ -22,13 +22,6 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <!-- icon link -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script>
-        $(document).ready(function(){
-            $("#showField").click(function(){
-                $("#newPwd").toggle();
-            })
-        })
-    </script>
 </head>
 <body>
     <div id="app">
@@ -77,6 +70,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a href="#" class="dropdown-item" data-toggle="modal" data-target="#userProfile">Profile</a>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#changePwd">Change Password</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -100,7 +94,7 @@
 </body>
 @if(Auth::user())
 <div class="modal fade" id="userProfile" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-body">
@@ -114,21 +108,37 @@
                             <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
                             <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
                             <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4 mb-2">
-                            <a href="#" id="showField">Add New Password</a>
-                            <div id="newPwd" class="mb-3">
-                                <input type="password" name="password" id="pwd" class="form-control mt-2" placeholder="New password">
-                                <input type="password" name="password" id="confrimPwd" class="form-control mt-4" placeholder="Confirm new password">
-                            </div>
                         </div>
                         <div class="col-4">
                             <div class="img">
                                 <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
-                                <input type="file" name="profile" id="profile" class="mt-3 mb-4">
                             </div>
                         </div>
                     </div>
                         <button class="btn btn-warning float-right" type="submit">Update</button>
                         <a href="#" class="btn btn-danger float-right mr-4" data-dismiss="modal">Discard</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal change password-->
+<div class="modal fade" id="changePwd" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{{route('changePassword')}}" class="md-form" method="post">
+                    @csrf
+                    @method('put')
+                    <div class="container">
+                    <h5>Change Password</h5>
+                        <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="form-control mt-3">
+                        <input type="password" name="comfirmPassword" id="confirmPassword" placeholder="Comfirm New Password" class="form-control mt-3">
+                        <button type="submit" class="btn btn-primary float-right mt-3">Change Password</button>
+                        <button data-dismiss="modal" class="btn btn-danger mt-3">Discard</button>
                     </div>
                 </form>
             </div>

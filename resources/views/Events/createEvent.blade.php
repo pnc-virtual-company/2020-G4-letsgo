@@ -1,15 +1,15 @@
  <!-- The Modal -->
  <div class="modal" id="eventModal">
-     <div class="modal-dialog modal-lg">
+     <div class="modal-dialog">
          <div class="modal-content">
              <!-- Modal body -->
              <div class="modal-body">
                  <div class="container">
                      <h5>Creat an event</h5>
-                     <form action="{{route('events.store')}}" method="post">
+                     <form action="{{route('events.store')}}" method="post" enctype="multipart/form-data">
                      @csrf
                      <div class="row">
-                         <div class="col-8">
+                         <div class="col-12">
                              <select class="form-control" name="categoryid" required>
                                  <option value="" disabled selected>Event Category</option>
                                  @foreach($categories as $category)
@@ -39,24 +39,11 @@
                                 <option>{{$item['cityCountry']}}</option>
                             @endforeach
                             </select>
-                            <textarea class="form-control mt-2" name="description" placeholder="Description"></textarea>
-                         </div>
-                         <div class="col-4">
-                             <div class="img">
-                                 <img src="{{asset('image/events.jpg')}}" alt="Not found" class="img-thumbnail">
-                                 <div class="image-upload text-center">
-                                     <label for="file-input">
-                                         <i class="material-icons m-2 text-primary">create</i>
-                                     </label>
-
-                                     <input id="file-input" type="file" name="eventPicture" />
-                                    
-                                 </div>
-                             </div>
+                            <input type="file" class="form-control mt-2" id="eventPicture" name="eventPicture">                            <textarea class="form-control mt-2" name="description" placeholder="Description"></textarea>
+                            <button type="submit" class="btn text-primary float-right">SUBMIT</button>
+                            <a href="#" data-dismiss="modal" class="btn float-right">DISCARD</a>
                          </div>
                      </div>
-                     <button type="submit" class="btn text-primary float-right">SUBMIT</button>
-                     <a href="#" data-dismiss="modal" class="btn float-right">DISCARD</a>
                 </form>
                  </div>
              </div>
