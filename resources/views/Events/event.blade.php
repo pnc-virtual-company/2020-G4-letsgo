@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+@include('Events.deleteEvents')
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -30,7 +31,7 @@
                         </div>
                         <div class="col-3 mt-5">
                             <a href="#" class="btn btn-warning float-right">EDIT</a>
-                            <a href="#" class="btn btn-danger float-right mr-3">CANCEL</a>
+                            <a class="delete btn btn-danger float-right mr-3" id="dlEvents" data-id="{{$event->id}}" data-target="#delete_event" data-toggle="modal" >CANCEL</a>
                         </div>
                     </div>
                 </div>
