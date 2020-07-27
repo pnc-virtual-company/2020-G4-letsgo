@@ -114,6 +114,10 @@
                                 <div class="img">
                                     <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
                                 </div>
+                                <div class="image-upload">
+                                    <label for="input-file"><i class="material-icons">edit</i></label>
+                                    <input id="input-file" type="file" name="profile" class="col-12">
+                                </div>
                             </div>
                         </div>
                         <button class="btn btn-warning float-right" type="submit">Update</button>
