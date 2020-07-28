@@ -106,21 +106,30 @@
                         <div class="row">
                             <div class="col-8">
                                 <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
-                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
-                                <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4 mb-2">
+                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-2">
+                                <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-2 mb-2">
+                                <select name="sex" id="sex" class="form-control">
+                                <option value="Male" <?php if(Auth::user()->gender == "Male"){?>selected="selected"<?php }?>>Male</option>
+                                <option value="Female" <?php if(Auth::user()->gender == "Female"){?>selected="selected"<?php }?>>Female</option>
+                                </select>
+                                @if(Auth::user()->age)
+                                    <input type="number" name="age" id="age" max="100" class="form-control mt-2" value="{{Auth::user()->age}}" placeholder="Your age">
+                                    @else
+                                    <input type="number" name="age" id="age" max="100" class="form-control mt-2" placeholder="Your age">
+                                @endif
                             </div>
                             <div class="col-4">
                                 <div class="img">
                                     <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
                                 </div>
                                 <div class="image-upload">
-                                    <label for="input-file"><i class="material-icons">edit</i></label>
+                                    <label for="input-file" class="btn-sm btn-primary m-3">Edit Profile</label>
                                     <input id="input-file" type="file" name="profile" class="col-12">
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-warning float-right" type="submit">Update</button>
-                        <a href="#" class="btn btn-danger float-right mr-4" data-dismiss="modal">Discard</a>
+                        <button class="btn btn-warning float-right mt-2" type="submit">Update</button>
+                        <a href="#" class="btn btn-danger float-right mr-4 mt-2" data-dismiss="modal">Discard</a>
                     </div>
                 </form>
             </div>
