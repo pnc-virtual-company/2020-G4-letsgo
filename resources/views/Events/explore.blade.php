@@ -28,7 +28,7 @@
         <div class="col-12 mt-4">
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="checkbox" id="onlyEventJoined" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">Event you join only</label>
+                <label class="form-check-label" for="onlyEventJoined">Event you join only</label>
             </div>
             @foreach($events as $event)
             @if($event->organizer != Auth::id())
