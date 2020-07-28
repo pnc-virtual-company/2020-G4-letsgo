@@ -18,15 +18,17 @@
                     <div class="row">
                         <div class="col-2 mt-5">
                             @if($event->startTime < 12)
-                                <h3>{{$event->startTime}} AM</h3>
+                                <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
                             @else
-                                <h3>{{$event->startTime}} PM</h3>
+                                <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} PM</h3>
                             @endif
+                            <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
                         </div>
                         <div class="col-4 text-center mt-4">
                             <h5>{{$event->Category['name']}}</h5>
                             <h3>{{$event->title}}</h3>
                             <p>{{$event->numberOfMember}} Members going!</p>
+                            <p>{{$event->location}}</p>
                         </div>
                         <div class="col-3">
                             <img src="{{asset('image/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
