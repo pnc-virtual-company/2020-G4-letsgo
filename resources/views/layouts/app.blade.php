@@ -73,8 +73,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#userProfile">Profile</a>
                                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#changePwd">Change Password</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
@@ -92,74 +91,78 @@
             @yield('content')
         </main>
     </div>
-    @if(Auth::user())
-    <div class="modal fade" id="userProfile" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form action="{{route('users.update', Auth::id())}}" class="md-form" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('put')
-                        <div class="container">
-                            <h5>Edit Profile</h5>
-                            <div class="row">
-                                <div class="col-8">
-                                    <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
-                                    <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
-                                    <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4 mb-2">
+</body>
+@if(Auth::user())
+<div class="modal fade" id="userProfile" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{{route('users.update', Auth::id())}}" class="md-form" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('put')
+                    <div class="container">
+                        <h5>Edit Profile</h5>
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" name="firstName" id="firstName" placeholder="First Name" value="{{Auth::user()->firstName}}" class="form-control">
+                                <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-4">
+                                <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-4 mb-2">
+                            </div>
+                            <div class="col-4">
+                                <div class="img">
+                                    <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
                                 </div>
-                                <div class="col-4">
-                                    <div class="img">
-                                        <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
-                                    </div>
+                                <div class="image-upload">
+                                    <label for="input-file"><i class="material-icons">edit</i></label>
+                                    <input id="input-file" type="file" name="profile" class="col-12">
                                 </div>
                             </div>
-                            <button class="btn btn-warning float-right" type="submit">Update</button>
-                            <a href="#" class="btn btn-danger float-right mr-4" data-dismiss="modal">Discard</a>
                         </div>
-                    </form>
-                </div>
+                        <button class="btn btn-warning float-right" type="submit">Update</button>
+                        <a href="#" class="btn btn-danger float-right mr-4" data-dismiss="modal">Discard</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <!--Modal change password-->
-    <div class="modal fade" id="changePwd" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form action="{{route('changePassword')}}" class="md-form" method="post">
-                        @csrf
-                        @method('put')
-                        <div class="container">
-                            <h5>Change Password</h5>
-                            <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="form-control mt-3">
-                            <input type="password" name="comfirmPassword" id="confirmPassword" placeholder="Comfirm New Password" class="form-control mt-3">
-                            <span id="messageForVerifyPassword" class="text-danger"></span><br>
-                            <button type="submit" class="btn btn-primary float-right mt-3" id="changePassword">Change Password</button>
-                            <button data-dismiss="modal" class="btn btn-danger mt-3">Discard</button>
-                        </div>
-                    </form>
-                </div>
+<!--Modal change password-->
+<div class="modal fade" id="changePwd" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="{{route('changePassword')}}" class="md-form" method="post">
+                    @csrf
+                    @method('put')
+                    <div class="container">
+                        <h5>Change Password</h5>
+                        <input type="password" name="newPassword" id="newPassword" placeholder="New Password" class="form-control mt-3">
+                        <input type="password" name="comfirmPassword" id="confirmPassword" placeholder="Comfirm New Password" class="form-control mt-3">
+                        <span id="messageForVerifyPassword"></span><br>
+                        <button type="submit" class="btn btn-primary float-right mt-3" id="changePassword">Change Password</button>
+                        <button data-dismiss="modal" class="btn btn-danger mt-3">Discard</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    @endif
-    <script>
-        $(document).on('keyup', '#confirmPassword', function() {
-            $newPassword = $('#newPassword').val();
-            $confirmPassword = $('#confirmPassword').val();
-            if ($newPassword != $confirmPassword) {
-                $('#messageForVerifyPassword').html("Password not match");
-                $('#changePassword').attr("disabled", true);
-            } else {
-                $('#messageForVerifyPassword').html("");
-                $('#changePassword').attr("disabled", false);
-            }
-        })
-    </script>
-</body>
+</div>
+@endif
+<script>
+    $(document).on('keyup', '#confirmPassword', function() {
+        $newPassword = $('#newPassword').val();
+        $confirmPassword = $('#confirmPassword').val();
+        if ($newPassword != $confirmPassword) {
+            $('#messageForVerifyPassword').html("Password not match");
+            $('#changePassword').attr("disabled", true);
+        } else {
+            $('#messageForVerifyPassword').html("");
+            $('#changePassword').attr("disabled", false);
+        }
+    })
+</script>
 
 </html>

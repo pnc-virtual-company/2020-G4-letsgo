@@ -15,8 +15,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $event = Event::all();
-        return view('Events.event',compact('event'));
+        $events = Event::all();
+        return view('Events.event',compact('events'));
     }
 
     /**
@@ -99,15 +99,20 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
-    {
-        //
+    public function deleteEvent($id){
+        $deleteEvents = Event::find($id);
+        $deleteEvents->delete();
+        return back();
     }
 
 
 
     public function showExploreEventView(){
-        return view('Events.explore');
+        $events = Event::orderBy('startDate')->get();
+        $categories = Category::all();
+        $jsonString = file_get_contents(base_path('resources/cities.json'));
+        $data = json_decode($jsonString, true);
+        return view('Events.explore', compact('categories', 'data','events'));
     }
     public function showYourEventView(){
         $events = Event::orderBy('startDate')->get();
@@ -116,4 +121,5 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.yourEvents', compact('categories', 'data','events'));
     }
+
 }
