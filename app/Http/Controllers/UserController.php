@@ -74,6 +74,8 @@ class UserController extends Controller
         $user = User::find($id);
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
+        $user->gender = $request->sex;
+        $user->age = $request->age;
         $user->email = $request->email;
         if ($request->hasfile('profile')){
             $file = $request->file('profile');
