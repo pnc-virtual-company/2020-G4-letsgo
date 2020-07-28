@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('gender');
+            $table->integer('age');
             $table->integer('role');
             $table->string('profile');
             $table->string('email')->unique();
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
                 'firstName' => "admin",
                 'lastName' => "user",
                 'gender'=>'male',
+                'age'=>19,
                 'email' => "admin@example.com",
                 'role' => 1,
                 'password' => bcrypt('password'),
