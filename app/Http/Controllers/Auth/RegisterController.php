@@ -66,8 +66,8 @@ class RegisterController extends Controller
     {
         $user = new User;
         $user->firstName = $data['firstName'];
-        
         $user->lastName = $data['lastName'];
+        $user->gender = $data['gender'];
         $user->email = $data['email'];
         $user->profile = "user.png";
         $user->role = 0;
