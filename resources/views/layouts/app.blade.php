@@ -73,8 +73,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#userProfile">Profile</a>
                                 <a href="#" class="dropdown-item" data-toggle="modal" data-target="#changePwd">Change Password</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 
