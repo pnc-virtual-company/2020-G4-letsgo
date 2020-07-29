@@ -15,8 +15,8 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $event = Event::all();
-        return view('Events.event',compact('event'));
+        $events = Event::all();
+        return view('Events.event',compact('events'));
     }
 
     /**
@@ -37,7 +37,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        
+       
         $event = new Event();
         $event->location = $request->city;
         $event->title = $request->title;
@@ -49,7 +49,11 @@ class EventController extends Controller
         $event->organizer = auth::id();
         $event->category_id = $request->categoryid;
         if ($request->hasfile('eventPicture')){
-            $event->eventPicture = $request->eventPicture;
+            $file = $request->file('eventPicture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). ".".$extension;
+            $file->move('image/', $filename);
+            $event->eventPicture = $filename;   
         }
         $event->save();
         return redirect('yourEventsView');
@@ -117,21 +121,27 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Event $event)
-    {
-        //
+    public function deleteEvent($id){
+        $deleteEvents = Event::find($id);
+        $deleteEvents->delete();
+        return back();
     }
 
 
 
     public function showExploreEventView(){
-        return view('Events.explore');
+        $events = Event::orderBy('startDate')->get();
+        $categories = Category::all();
+        $jsonString = file_get_contents(base_path('resources/cities.json'));
+        $data = json_decode($jsonString, true);
+        return view('Events.explore', compact('categories', 'data','events'));
     }
     public function showYourEventView(){
-        $events = Event::all();
+        $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
         return view('Events.yourEvents', compact(['categories', 'data','events']));
     }
+
 }

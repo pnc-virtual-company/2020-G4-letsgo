@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('firstName');
             $table->string('lastName');
+            $table->string('gender');
+            $table->integer('age')->nullable();;
             $table->integer('role');
             $table->string('profile');
             $table->string('email')->unique();
@@ -29,6 +31,8 @@ class CreateUsersTable extends Migration
             array(
                 'firstName' => "admin",
                 'lastName' => "user",
+                'gender'=>'male',
+                'age'=>19,
                 'email' => "admin@example.com",
                 'role' => 1,
                 'password' => bcrypt('password'),

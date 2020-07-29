@@ -15,14 +15,14 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->integer('numberOfMember')->default(1);
+            $table->integer('numberOfMember')->default(0);
             $table->string('location');
             $table->string('title');
             $table->date('startDate',0);
             $table->date('endDate',0);
             $table->time('startTime', 0);
             $table->time('endTime', 0);
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->unsignedBigInteger('organizer');
             $table->string('eventPicture')->default('events.jpg');
             $table->foreign('organizer')
