@@ -23,7 +23,7 @@
                             @else
                                 <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} PM</h3>
                             @endif
-                            <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
+                            <p>{{\Carbon\Carbon::parse($event->startDate)->format('d/m/Y')}}</p>
                         </div>
                         <div class="col-4 text-center mt-4">
                             <h5>{{$event->Category['name']}}</h5>
