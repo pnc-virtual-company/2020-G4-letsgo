@@ -109,18 +109,18 @@
                                 <input type="text" name="lastName" id="lastName" placeholder="Last Name" value="{{Auth::user()->lastName}}" class="form-control mt-2">
                                 <input type="email" name="email" id="email" placeholder="Email" value="{{Auth::user()->email}}" class="form-control mt-2 mb-2">
                                 <select name="sex" id="sex" class="form-control">
-                                <option value="Male" <?php if(Auth::user()->gender == "Male"){?>selected="selected"<?php }?>>Male</option>
-                                <option value="Female" <?php if(Auth::user()->gender == "Female"){?>selected="selected"<?php }?>>Female</option>
+                                    <option value="Male" <?php if (Auth::user()->gender == "Male") { ?>selected="selected" <?php } ?>>Male</option>
+                                    <option value="Female" <?php if (Auth::user()->gender == "Female") { ?>selected="selected" <?php } ?>>Female</option>
                                 </select>
                                 @if(Auth::user()->age)
-                                    <input type="number" name="age" id="age" max="100" class="form-control mt-2" value="{{Auth::user()->age}}" placeholder="Your age">
-                                    @else
-                                    <input type="number" name="age" id="age" max="100" class="form-control mt-2" placeholder="Your age">
+                                <input type="number" name="age" id="age" max="100" class="form-control mt-2" value="{{Auth::user()->age}}" placeholder="Your age">
+                                @else
+                                <input type="number" name="age" id="age" max="100" class="form-control mt-2" placeholder="Your age">
                                 @endif
                             </div>
                             <div class="col-4">
                                 <div class="img">
-                                    <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail">
+                                    <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail" id="image-preview">
                                 </div>
                                 <div class="image-upload">
                                     <label for="input-file" class="btn-sm btn-primary m-3">Edit Profile</label>
@@ -171,7 +171,23 @@
             $('#messageForVerifyPassword').html("");
             $('#changePassword').attr("disabled", false);
         }
-    })
+    });
+
+    const inpFile = document.getElementById('input-file');
+    const preview = document.getElementById(".img");
+    const previewImage = document.querySelector("#image-preview");
+
+    inpFile.addEventListener("change", function() {
+        const file = this.files[0];
+        console.log(file);
+        if (file) {
+            const reader = new FileReader();
+            reader.addEventListener("load", function() {
+                previewImage.setAttribute('src', this.result);
+            });
+            reader.readAsDataURL(file);
+        }
+    });
 </script>
 
 </html>
