@@ -94,6 +94,19 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Event  $event
+     * @return \Illuminate\Http\Response
+     */
+    public function updateEvent(Request $request, $id)
+    {
         $event = Event::find($id);
         
         $event->location = $request->location;
