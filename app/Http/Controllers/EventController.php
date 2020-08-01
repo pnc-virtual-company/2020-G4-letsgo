@@ -16,7 +16,10 @@ class EventController extends Controller
      */
     public function index(){
         $events = Event::all();
-        return view('Events.event',compact('events'));
+        $categories = Category::all();
+        $jsonString = file_get_contents(base_path('resources/cities.json'));
+        $data = json_decode($jsonString, true);
+        return view('Events.event',compact('events','categories','data'));
     }
 
     /**
@@ -81,6 +84,7 @@ class EventController extends Controller
         //
     }
 
+    
     /**
      * Update the specified resource in storage.
      *
@@ -88,10 +92,37 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $event = Event::find($id);
+        
+        $event->location = $request->location;
+        $event->title = $request->title;
+        $event->startDate = $request->startDate;
+        $event->endDate = $request->endDate;
+        $event->startTime = $request->startTime;
+        $event->endTime = $request->endTime;
+        $event->description = $request->description;
+        $event->organizer = auth::id();
+        $event->category_id = $request->categoryid;
+         if ($request->hasfile('eventPicture')){
+            $file = $request->file('eventPicture');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time(). ".".$extension;
+            $file->move('image/', $filename);
+            $event->eventPicture = $filename;   
+        }
+        $event->save();
+        if(auth::id()==1&&$event->organizer !=1){
+            
+            return redirect('events.index');
+            
+        }else{
+            return redirect('yourEventsView');
+        }
+
     }
+
 
     /**
      * Remove the specified resource from storage.
