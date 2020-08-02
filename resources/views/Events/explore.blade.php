@@ -31,17 +31,18 @@
                 <label class="form-check-label" for="onlyEventJoined">Event you join only</label>
             </div>
             @foreach($events as $event)
-            @if($event->organizer != Auth::id())
+
+            @foreach ($event->users as $user)
+            @if($user->pivot->user_id != Auth::id())
             <div class="card mt-3">
                 <div class="container">
                     <div class="row">
                         <div class="col-2 mt-5">
-                            @if($event->startTime < 12)
-                                <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
-                            @else
+                            @if($event->startTime < 12) <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
+                                @else
                                 <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} PM</h3>
-                            @endif
-                            <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
+                                @endif
+                                <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
                         </div>
                         <div class="col-4 text-center mt-4">
                             <h5>{{$event->Category['name']}}</h5>
@@ -53,12 +54,13 @@
                             <img src="{{asset('image/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
                         </div>
                         <div class="col-2 mt-5">
-                           <a href="#" class="btn btn-light"><span class="material-icons float-left">check_circle_outline</span> Join</a>
+                            <a href="#" class="btn btn-light"><span class="material-icons float-left">check_circle_outline</span> Join</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endif
+            @endforeach
             @endforeach
         </div>
     </div>
