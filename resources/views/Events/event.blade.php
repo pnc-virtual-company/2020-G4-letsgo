@@ -10,19 +10,21 @@
     </div>
     <div class="row">
         <div class="col-12 mt-5">
-            
-        @foreach($events as $event)
-        @if($event->organizer!=1)
+
+            @foreach($events as $event)
+            @foreach ($event->users as $user)
+
+
+            @if($user->pivot->user_id != 1)
             <div class="card mt-2">
                 <div class="container">
                     <div class="row">
                         <div class="col-2 mt-5">
-                            @if($event->startTime < 12)
-                                <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
-                            @else
+                            @if($event->startTime < 12) <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
+                                @else
                                 <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} PM</h3>
-                            @endif
-                            <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
+                                @endif
+                                <p>{{date('d-m-Y', strtotime($event->startTime))}}</p>
                         </div>
                         <div class="col-4 text-center mt-4">
                             <h5>{{$event->Category['name']}}</h5>
@@ -34,29 +36,18 @@
                             <img src="{{asset('image/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
                         </div>
                         <div class="col-3 mt-5">
-                            <a href="#" 
-                                data-category="{{$event->category_id}}" 
-                                data-title = "{{$event->title}}"
-                                data-startdate="{{$event->startDate}}"
-                                data-enddate="{{$event->endDate}}"
-                                data-starttime="{{$event->startTime}}"
-                                data-endtime="{{$event->endTime}}"
-                                data-location="{{$event->location}}"
-                                data-image="{{$event->eventPicture}}"
-                                data-description="{{$event->description}}"
-                                data-toggle="modal" data-target="#editEventModal"
-                                class="btn btn-warning btn-editEvent float-right">EDIT</a>
-                                {{--===================== modal of edit your event ============--}}
-                            <a class="delete btn btn-danger float-right mr-3" id="dlEvents" data-id="{{$event->id}}" data-target="#delete_event" data-toggle="modal" >CANCEL</a>
+                            <a href="#" data-category="{{$event->category_id}}" data-title="{{$event->title}}" data-startdate="{{$event->startDate}}" data-enddate="{{$event->endDate}}" data-starttime="{{$event->startTime}}" data-endtime="{{$event->endTime}}" data-location="{{$event->location}}" data-image="{{$event->eventPicture}}" data-description="{{$event->description}}" data-toggle="modal" data-target="#editEventModal" class="btn btn-warning btn-editEvent float-right">EDIT</a>
+                            {{--===================== modal of edit your event ============--}}
+                            <a class="delete btn btn-danger float-right mr-3" id="dlEvents" data-id="{{$event->id}}" data-target="#delete_event" data-toggle="modal">CANCEL</a>
                         </div>
                     </div>
                 </div>
             </div>
             @endif
             @endforeach
+            @endforeach
         </div>
     </div>
 </div>
 
 @endsection
-
