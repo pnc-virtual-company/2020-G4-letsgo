@@ -36,7 +36,18 @@
                             <img src="{{asset('image/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
                         </div>
                         <div class="col-3 mt-5">
-                            <a href="#" data-category="{{$event->category_id}}" data-title="{{$event->title}}" data-startdate="{{$event->startDate}}" data-enddate="{{$event->endDate}}" data-starttime="{{$event->startTime}}" data-endtime="{{$event->endTime}}" data-location="{{$event->location}}" data-image="{{$event->eventPicture}}" data-description="{{$event->description}}" data-toggle="modal" data-target="#editEventModal" class="btn btn-warning btn-editEvent float-right">EDIT</a>
+                            <a href=""
+                                    data-category="{{$event->category_id}}"
+                                    data-title = "{{$event->title}}"
+                                    data-startdate="{{$event->startDate}}"
+                                    data-enddate="{{$event->endDate}}"
+                                    data-starttime="{{$event->startTime}}"
+                                    data-endtime="{{$event->endTime}}"
+                                    data-description="{{$event->description}}"
+                                    data-location="{{$event->location}}"
+                                    data-image="{{$event->eventPicture}}"
+                                    data-id ="{{$event->id}}"
+                                    class="btn btn-warning btn-editEvent float-right" data-target="#editEventModal" data-toggle="modal">EDIT</a>
                             {{--===================== modal of edit your event ============--}}
                             <a class="delete btn btn-danger float-right mr-3" id="dlEvents" data-id="{{$event->id}}" data-target="#delete_event" data-toggle="modal">CANCEL</a>
                         </div>

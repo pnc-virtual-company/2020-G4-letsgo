@@ -4,6 +4,7 @@
 @include('Events.createEvent')
 @include('Events.deleteEvents')
 @include('Events.editEvent')
+@include('Events.editYourEvent')
 <div class="container">
     <div class="row">
         <div class="col-12">
