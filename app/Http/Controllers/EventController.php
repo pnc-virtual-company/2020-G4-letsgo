@@ -108,6 +108,8 @@ class EventController extends Controller
      */
     public function updateEvent(Request $request, $id)
     {
+        $events = Event::orderBy('startDate')->get();
+
         $event = Event::find($id);
         
         $event->location = $request->location;
@@ -117,7 +119,6 @@ class EventController extends Controller
         $event->startTime = $request->startTime;
         $event->endTime = $request->endTime;
         $event->description = $request->description;
-        $event->organizer = auth::id();
         $event->category_id = $request->categoryid;
          if ($request->hasfile('eventPicture')){
             $file = $request->file('eventPicture');
@@ -127,13 +128,7 @@ class EventController extends Controller
             $event->eventPicture = $filename;   
         }
         $event->save();
-        if(auth::id()==1&&$event->organizer !=1){
-            
-            return redirect('events.index');
-            
-        }else{
-            return redirect('yourEventsView');
-        }
+        return back();
 
     }
 
