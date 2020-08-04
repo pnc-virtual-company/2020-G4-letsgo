@@ -2,6 +2,7 @@
 @section('content')
 @include('Events.createEvent')
 @include('Events.deleteEvents')
+@include('Events.detailExplore')
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -34,7 +35,32 @@
 
             @foreach ($event->users as $user)
             @if($user->pivot->user_id != Auth::id())
-            <div class="card mt-3">
+            <div class="card mt-3"
+                data-toggle     ="modal" 
+                data-title      ="{{$event->title}}" 
+                data-image      ="{{$event->eventPicture}}" 
+                data-location   ="{{$event->location}}" 
+                data-members    ="{{$event->numberOfMember}}"
+                data-user       ="{{$event->organizer = Auth::user()->firstName}}"
+                data-category   ="{{$event->Category['name']}}"
+                data-decription ="{{$event->description}}"
+                data-startdate  ="{{$event->startDate}}"
+                data-starttime  ="
+                                @if($event->startTime < 12) 
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM
+                                @else
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} PM
+                                @endif
+                                "
+                data-endtime    ="
+                                @if($event->endTime < 12) 
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$event->endTime)->format('h:i')}} AM
+                                @else
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$event->endTime)->format('h:i')}} PM
+                                @endif
+                                "
+                data-target     ="#exampleModal"
+            >
                 <div class="container">
                     <div class="row">
                         <div class="col-2 mt-5">
