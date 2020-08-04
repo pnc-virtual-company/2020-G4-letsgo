@@ -8,7 +8,7 @@
             <h2>Find your event</h2>
             <div class="row mt-3">
                 <div class="col-4">
-                    <input type="text" placeholder="Search" class="form-control">
+                    <input type="text" placeholder="Search" id="searchEvent" class="form-control">
                 </div>
                 <div class="col-4">
                     <h5 class="float-right mt-2">Not to far from</h5>
@@ -64,4 +64,15 @@
             @endforeach
         </div>
     </div>
+    <script>
+        //search event
+        $(document).ready(function() {
+            $("#searchEvent").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".card").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
     @endsection
