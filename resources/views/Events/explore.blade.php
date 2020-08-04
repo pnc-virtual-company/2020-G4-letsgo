@@ -31,9 +31,7 @@
                 <label class="form-check-label" for="onlyEventJoined">Event you join only</label>
             </div>
             @foreach($events as $event)
-
-            @foreach ($event->users as $user)
-            @if($user->pivot->user_id != Auth::id())
+            @if($event->organizer != Auth::id())
             <div class="card mt-3">
                 <div class="container">
                     <div class="row">
@@ -60,7 +58,6 @@
                 </div>
             </div>
             @endif
-            @endforeach
             @endforeach
         </div>
     </div>

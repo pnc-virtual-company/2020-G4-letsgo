@@ -50,6 +50,7 @@ class EventController extends Controller
         $event->endTime = $request->endTime;
         $event->description = $request->description;
         $event->category_id = $request->categoryid;
+        $event->organizer = auth::id();
         if ($request->hasfile('eventPicture')){
             $file = $request->file('eventPicture');
             $extension = $file->getClientOriginalExtension();
@@ -58,8 +59,6 @@ class EventController extends Controller
             $event->eventPicture = $filename;   
         }
         $event->save();
-        $event = Event::find($event->id);
-        $event->users()->attach(auth::id());
         return redirect('yourEventsView');
     }
 

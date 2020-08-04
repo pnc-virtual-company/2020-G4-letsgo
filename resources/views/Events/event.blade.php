@@ -12,10 +12,7 @@
         <div class="col-12 mt-5">
 
             @foreach($events as $event)
-            @foreach ($event->users as $user)
-
-
-            @if($user->pivot->user_id != 1)
+            @if($event->organizer != 1)
             <div class="card mt-2">
                 <div class="container">
                     <div class="row">
@@ -55,7 +52,6 @@
                 </div>
             </div>
             @endif
-            @endforeach
             @endforeach
         </div>
     </div>
