@@ -14,3 +14,15 @@
   width: 25px;
   height:25px;
 }
+#location_countries{
+  display: inline-block;
+}
+#userName{
+  display: inline-block;
+}
+#numberOfMember{
+  display: inline-block;
+}
+#times_start{
+  display: inline-block;
+}

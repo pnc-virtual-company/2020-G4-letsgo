@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 use Auth;
 
 class EventController extends Controller
@@ -147,11 +148,12 @@ class EventController extends Controller
 
 
     public function showExploreEventView(){
+        $users = User::all();
         $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
-        return view('Events.explore', compact('categories', 'data','events'));
+        return view('Events.explore', compact('categories', 'data','events', 'users'));
     }
     public function showYourEventView(){
         $events = Event::orderBy('startDate')->get();
