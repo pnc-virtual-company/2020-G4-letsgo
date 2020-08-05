@@ -33,4 +33,6 @@ Route::get('delete{id}', 'UserController@deleteProfile')->name('deleteProfile');
 Route::put('editCategory/{id}', 'CategoryController@editCategory');
 Route::get('existCategory','CategoryController@existCategory')->name('existCategory');
 Route::put('changePassword', 'UserController@changePassword')->name('changePassword');
+Route::put('joinEvent/{id}', 'EventController@joinEvent')->name('joinEvent');
+
 
