@@ -15,12 +15,13 @@ class EventController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $events = Event::all();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
-        return view('Events.event',compact('events','categories','data'));
+        return view('Events.event', compact('events', 'categories', 'data'));
     }
 
     /**
@@ -41,7 +42,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $event = new Event();
         $event->location = $request->city;
         $event->title = $request->title;
@@ -52,12 +53,12 @@ class EventController extends Controller
         $event->description = $request->description;
         $event->category_id = $request->categoryid;
         $event->organizer = auth::id();
-        if ($request->hasfile('eventPicture')){
+        if ($request->hasfile('eventPicture')) {
             $file = $request->file('eventPicture');
             $extension = $file->getClientOriginalExtension();
-            $filename = time(). ".".$extension;
+            $filename = time() . "." . $extension;
             $file->move('image/', $filename);
-            $event->eventPicture = $filename;   
+            $event->eventPicture = $filename;
         }
         $event->save();
         return redirect('yourEventsView');
@@ -85,7 +86,7 @@ class EventController extends Controller
         //
     }
 
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -95,8 +96,6 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-
     }
 
     /**
@@ -111,7 +110,7 @@ class EventController extends Controller
         $events = Event::orderBy('startDate')->get();
 
         $event = Event::find($id);
-        
+
         $event->location = $request->location;
         $event->title = $request->title;
         $event->startDate = $request->startDate;
@@ -120,16 +119,15 @@ class EventController extends Controller
         $event->endTime = $request->endTime;
         $event->description = $request->description;
         $event->category_id = $request->categoryid;
-         if ($request->hasfile('eventPicture')){
+        if ($request->hasfile('eventPicture')) {
             $file = $request->file('eventPicture');
             $extension = $file->getClientOriginalExtension();
-            $filename = time(). ".".$extension;
+            $filename = time() . "." . $extension;
             $file->move('image/', $filename);
-            $event->eventPicture = $filename;   
+            $event->eventPicture = $filename;
         }
         $event->save();
         return back();
-
     }
 
 
@@ -139,7 +137,8 @@ class EventController extends Controller
      * @param  \App\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function deleteEvent($id){
+    public function deleteEvent($id)
+    {
         $deleteEvents = Event::find($id);
         $deleteEvents->delete();
         return back();
@@ -147,20 +146,29 @@ class EventController extends Controller
 
 
 
-    public function showExploreEventView(){
+    public function showExploreEventView()
+    {
         $users = User::all();
         $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
-        return view('Events.explore', compact('categories', 'data','events', 'users'));
+        return view('Events.explore', compact('categories', 'data', 'events', 'users'));
     }
-    public function showYourEventView(){
+    public function showYourEventView()
+    {
         $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
-        return view('Events.yourEvents', compact('categories', 'data','events'));
+        return view('Events.yourEvents', compact('categories', 'data', 'events'));
     }
-
+    public function joinEvent($id)
+    {
+        $event = Event::find($id);
+        $event->numberOfMember = $event->numberOfMember + 1;
+        $event->save();
+        $event->users()->attach(auth::id());
+        return back();
+    }
 }
