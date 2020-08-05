@@ -15,7 +15,7 @@
                     <h5 class="float-right mt-2">Not to far from</h5>
                 </div>
                 <div class="col-4">
-                    <select name="city" required class="form-control float-right">
+                    <select name="city" required class="form-control float-right" id="searchLocation">
                         <option selected disabled>City</option>
                         @foreach($data as $item)
                         <option>{{$item['cityCountry']}}</option>
@@ -90,6 +90,16 @@
         //search event
         $(document).ready(function() {
             $("#searchEvent").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".card").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+        //search location
+        $(document).ready(function() {
+            $("#searchLocation").on("change", function() {
                 var value = $(this).val().toLowerCase();
                 $(".card").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
