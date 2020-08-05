@@ -42,7 +42,7 @@
                             <label for="Gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
     
                                 <div class="col-md-6">
-                                    <select name="gender" id="gender" class="form-control">
+                                    <select name="gender" id="gender" class="form-control" required>
                                         <option selected disabled></option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
