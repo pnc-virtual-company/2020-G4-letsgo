@@ -14,12 +14,8 @@
     <div class="row">
         <div class="col-12 mt-5">
         @foreach($events as $event)
-       
-            
-           @foreach ($event->users as $user)
-        
     
-        @if($user->pivot->user_id== Auth::id())
+        @if($event->organizer == Auth::id())
             <div class="card mt-2">
                 <div class="container">
                     <div class="row">
@@ -59,7 +55,6 @@
                 </div>
             </div>  
             @endif
-             @endforeach
             @endforeach
         </div>
 </div>

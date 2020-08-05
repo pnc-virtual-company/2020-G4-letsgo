@@ -9,7 +9,7 @@
             <h2>Find your event</h2>
             <div class="row mt-3">
                 <div class="col-4">
-                    <input type="text" placeholder="Search" class="form-control">
+                    <input type="text" placeholder="Search" id="searchEvent" class="form-control">
                 </div>
                 <div class="col-4">
                     <h5 class="float-right mt-2">Not to far from</h5>
@@ -32,9 +32,7 @@
                 <label class="form-check-label" for="onlyEventJoined">Event you join only</label>
             </div>
             @foreach($events as $event)
-
-            @foreach ($event->users as $user)
-            @if($user->pivot->user_id != Auth::id())
+            @if($event->organizer != Auth::id())
             <div class="card mt-3"
                 data-toggle     ="modal" 
                 data-title      ="{{$event->title}}" 
@@ -59,8 +57,7 @@
                                     {{\Carbon\Carbon::createFromFormat('H:i:s',$event->endTime)->format('h:i')}} PM
                                 @endif
                                 "
-                data-target     ="#exampleModal"
-            >
+                data-target     ="#exampleModal">
                 <div class="container">
                     <div class="row">
                         <div class="col-2 mt-5">
@@ -87,7 +84,17 @@
             </div>
             @endif
             @endforeach
-            @endforeach
         </div>
     </div>
+    <script>
+        //search event
+        $(document).ready(function() {
+            $("#searchEvent").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $(".card").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
     @endsection
