@@ -16,18 +16,18 @@
                 <div class="col-6">
                     <p id="category"></p>
                     <b><h2 id="title"></h2></b>
-                    <i class="fas fa-map-marker"><p id="location_countries" style="display: inline-block"></p></i><br>
-                    <i class="fas fa-user" >Organized By: <p id="userName" style="display: inline-block"></p></i><br>
-                    <i class="fas fa-users"><p id="numberOfMember" style="display: inline-block"></p>members</i><br>
-                    <i class="fas fa-clock"><p id="times_start" style="display: inline-block"></p></i><br>
+                    <i class="fas fa-map-marker">&nbsp;<p id="location_countries"></p></i><br>
+                    <i class="fas fa-user" >&nbsp;Organized By: <p id="userName"></p></i><br>
+                    <i class="fas fa-users">&nbsp;<p id="numberOfMember"></p>members</i><br>
+                    <i class="fas fa-clock">&nbsp;<p id="times_start"></p></i><br>
   
                     <a href="#" class="btn btn-light float-right"><span class="material-icons">check_circle_outline</span> Join</a>
                 </div>
               </div>
           </div>
         </div>
-        <div class="modal-footer">
-            <p id="paragraph"></p>
+        <div class="modal-footer" >
+            <div class="container" style="text-align:left" id="paragraph"></div>
         </div>
       </div>
     </div>
@@ -40,12 +40,13 @@
             var category    = button.data('category') 
             var images      = button.data('image') 
             var locations   = button.data('location') 
-            var username    = button.data('user')  
+            var organizer   = button.data('organizer')  
             var nbOfMembers = button.data('members')  
             var description = button.data('decription')
             var startTime   = button.data('starttime')  
             var endTime     = button.data('endtime')  
             var startDate   = button.data('startdate')
+            var users       = button.data('users')
             var getTime     = startTime + "-" + endTime ;
             var getDate     = startDate + " = "  + getTime;
            
@@ -54,8 +55,12 @@
             modal.find('#title').text(recipient);
             modal.find('#category').text(category);
             modal.find('#imageDetail').attr('src','/image/'+ images);
-            modal.find('#location_countries').text(locations);
-            modal.find('#userName').text(username);
+            modal.find('#location_countries').text(locations);  
+            users.forEach(user => {
+              if(user.id == organizer){
+                modal.find('#userName').text(user.firstName);
+              }
+            });
             modal.find('#numberOfMember').text(nbOfMembers);
             modal.find('#times_start').text(getDate);
             modal.find('#paragraph').text(description);
