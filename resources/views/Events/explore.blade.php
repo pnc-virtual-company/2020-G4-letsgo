@@ -79,7 +79,7 @@
                             @if(count($event->users->pluck('id')) != 0)
                             @foreach($event->users as $user)
                             @if($user->id == auth::id())
-                            <a href="#" class="btn btn-light text-danger"><span class="material-icons float-left">highlight_off</span> Quit</a>
+                            <a href="{{route('quitEvent',$event->id)}}" class="btn btn-light text-danger"><span class="material-icons float-left">highlight_off</span> Quit</a>
 
                             @else
                             <form action="{{route('joinEvent', $event->id)}}" method="post">
