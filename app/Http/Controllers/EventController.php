@@ -171,4 +171,20 @@ class EventController extends Controller
         $event->users()->attach(auth::id());
         return back();
     }
+     /**
+     * Remove member of user that joined event.
+     *
+     * @param  \ get the specific id of event \\ $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function quitEvent($id){
+        $event=Event::find($id);
+        $event->numberOfMember = $event->numberOfMember-1;
+        $event->save();
+        $event->users()->detach();
+        return back();
+    }
+
+    
 }
