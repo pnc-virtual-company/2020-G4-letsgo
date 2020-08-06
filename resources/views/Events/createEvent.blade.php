@@ -34,7 +34,7 @@
                                  </div>
                              </div>
                             <select name="city" required class="form-control mt-2">
-                                <option selected disabled>City</option>
+                                <option selected disabled value="">City</option>
                              @foreach($data as $item)
                                 <option>{{$item['cityCountry']}}</option>
                             @endforeach
