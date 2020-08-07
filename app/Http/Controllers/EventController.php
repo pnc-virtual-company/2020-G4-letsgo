@@ -186,5 +186,9 @@ class EventController extends Controller
         return back();
     }
 
+    public function calendarView(){
+        return view('Events.calendar');
+    }
+
     
 }

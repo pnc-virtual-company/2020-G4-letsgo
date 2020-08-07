@@ -35,5 +35,6 @@ Route::get('existCategory','CategoryController@existCategory')->name('existCateg
 Route::put('changePassword', 'UserController@changePassword')->name('changePassword');
 Route::put('joinEvent/{id}', 'EventController@joinEvent')->name('joinEvent');
 Route::get('quitEvent/{id}', 'EventController@quitEvent')->name('quitEvent');
+Route::get('calendarView','EventController@calendarView')->name('calendarView');
 
 

@@ -3,6 +3,7 @@
 @include('Events.createEvent')
 @include('Events.deleteEvents')
 @include('Events.detailExplore')
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -31,8 +32,25 @@
                 <input class="form-check-input" type="checkbox" id="onlyEventJoined" value="option3">
                 <label class="form-check-label" for="onlyEventJoined">Event you join only</label>
             </div>
+            <div class="float-right">
+                <!-- Nav pills -->
+                <ul class="nav" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="pill" href="#card">CARDS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="#calendar">CALENDAR</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+
+            
             @foreach($events as $event)
             @if($event->organizer != Auth::id())
+            <div class="tab-content">
+                <div  id="card" class="tab-pane active">
             <div class="card mt-3">
                 <div class="container">
                     <div class="row">
@@ -101,8 +119,16 @@
                     </div>
                 </div>
             </div>
-            @endif
+        </div>
+        
+            
+        <div id="calendar" class="tab-pane fade">
+                <h1>Calendar View</h1>
+            </div>
+        </div>
+        @endif
             @endforeach
+            
         </div>
     </div>
     <script>
