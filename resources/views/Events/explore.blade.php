@@ -53,8 +53,8 @@
                                     {{\Carbon\Carbon::createFromFormat('H:i:s',$event->endTime)->format('h:i')}} PM
                                 @endif
                                  "
-                                data-userevent="{{$event->users}}" data-eventid="{{$event->id}}"
-                                data-events="{{$event}}" data-currentuser="{{Auth::id()}}"  data-user="{{$event->users->pluck('id')}}" data-target="#exampleModal">
+                                data-eventid="{{$event->id}}"
+                                data-user="{{$event->users->pluck('id')}}" data-target="#exampleModal">
                                 <div class="row">
                                     <div class="col-2 mt-5">
                                         @if($event->startTime < 12) <h3>{{\Carbon\Carbon::createFromFormat('H:i:s',$event->startTime)->format('h:i')}} AM</h3>
