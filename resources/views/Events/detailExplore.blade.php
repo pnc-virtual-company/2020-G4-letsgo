@@ -23,13 +23,8 @@
               <i class="fas fa-users">&nbsp;<p id="numberOfMember"></p>members</i><br>
               <i class="fas fa-clock">&nbsp;<p id="times_start"></p></i><br>
 
-              <div class="text-right" id="joinEvent">
-                <form action="#" method="post" id="join">
-                  @csrf
-                  @method('put')
-                </form>
-              </div>
-              <div id="quit">
+          
+              <div id="action" class="float-right">
 
               </div>
             </div>
@@ -45,9 +40,9 @@
 <script>
   $(document).ready(function() {
     $('#exampleModal').on('show.bs.modal', function(event) {
-      var button = $(event.relatedTarget)
-      var recipient = button.data('title')
-      var category = button.data('category')
+      var button      = $(event.relatedTarget)
+      var recipient   = button.data('title')
+      var category    = button.data('category')
       var images = button.data('image')
       var locations = button.data('location')
       var organizer = button.data('organizer')
@@ -57,12 +52,12 @@
       var endTime = button.data('endtime')
       var startDate = button.data('startdate')
       var users = button.data('users')
-      var currentuser = button.data('currentuser');
+   
       var user = button.data('user')
       var userevent = button.data('userevent')
       var getTime = startTime + "-" + endTime;
       var getDate = startDate + " = " + getTime;
-      var events = button.data('events');
+
       var eventid = button.data('eventid');
       var modal = $(this)
       modal.find('#title').text(recipient);
@@ -78,19 +73,13 @@
       modal.find('#times_start').text(getDate);
       modal.find('#paragraph').text(description);
       if (user.length != 0) {
-        userevent.forEach(userid => {
-          if (userid.id == currentuser) {
-            modal.find('#quit').html('<a href="#" class="btn btn-light text-danger"><span class="material-icons float-left">highlight_off</span> Quit</a>')
-          } else {
-            modal.find('#join').html('<button id="joinBtn" type="submit" class="btn btn-light text-primary"><span class="material-icons float-left">check_circle_outline</span> Join</button>')
-          }
-        })
+        
+            modal.find('#action').html('<a href="quitEvent/'+eventid+'" class="btn btn-light text-danger"><span class="material-icons float-left">highlight_off</span> Quit</a>')
       } else {
-        modal.find('#join').html('<button type="submit" id="joinBtn" class="btn btn-light text-primary"><span class="material-icons float-left">check_circle_outline</span> Join</button>')
+            modal.find('#action').html('<form action="joinEvent/'+eventid +'" method="POST"> @csrf @method('put') <button id="joinBtn" type="submit" class="btn btn-light text-primary"><span class="material-icons float-left">check_circle_outline</span> Join</button></form>')
       }
+  
     });
-    $('#joinBtn').on('click', function(){
-      $('#join').attr("action", "{{ url('joinEvent') }}" + "/" + eventid);
-    })
+    
   })
 </script>
