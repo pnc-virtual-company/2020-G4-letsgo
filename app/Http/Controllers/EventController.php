@@ -185,6 +185,13 @@ class EventController extends Controller
         $event->users()->detach();
         return back();
     }
+    public function calendarView() {
+        $events = Event::orderBy('startDate')->get();
+        $categories = Category::all();
+        $jsonString = file_get_contents(base_path('resources/cities.json'));
+        $data = json_decode($jsonString, true);
+        return view('Events.calendar', compact('categories', 'data', 'events'));
+    }
 
     
 }
