@@ -34,14 +34,14 @@
             </div>
             <div class="float-right">
                 <!-- Nav pills -->
-                <ul class="nav" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="pill" href="#card">CARDS</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="pill" href="#calendar">CALENDAR</a>
-                    </li>
-                </ul>
+                <ul class="nav ml">
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('showExploreEventView')}}">Card</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{route('calendarView')}}">Calendar</a>
+                        </li>
+                      </ul>
             </div>
 
             <!-- Tab panes -->
