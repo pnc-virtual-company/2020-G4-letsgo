@@ -171,30 +171,38 @@ class EventController extends Controller
         $event->users()->attach(auth::id());
         return back();
     }
-     /**
+    /**
      * Remove member of user that joined event.
      *
      * @param  \ get the specific id of event \\ $id
      * @return \Illuminate\Http\Response
      */
 
-    public function quitEvent($id){
-        $event=Event::find($id);
-        $event->numberOfMember = $event->numberOfMember-1;
+    public function quitEvent($id)
+    {
+        $event = Event::find($id);
+        $event->numberOfMember = $event->numberOfMember - 1;
         $event->save();
         $event->users()->detach();
         return back();
     }
-    public function calendarView() {
+    public function calendarView()
+    {
         $events = Event::orderBy('startDate')->get();
         $categories = Category::all();
         $jsonString = file_get_contents(base_path('resources/cities.json'));
         $data = json_decode($jsonString, true);
         return view('Events.calendar', compact('categories', 'data', 'events'));
     }
-    public function calendarviews(){
+    public function calendarviews()
+    {
         $events = Event::all();
-        return view('Events.calendar',compact('events'));
+        return view('Events.calendar', compact('events'));
     }
-    
+    public function onlyJoinEvent()
+    {
+        $events = Event::orderBy('startDate')->get();
+        $users = User::all();
+        return view("Events.onlyJoinEvent", compact('events', 'users'));
+    }
 }

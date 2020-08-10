@@ -37,5 +37,6 @@ Route::put('joinEvent/{id}', 'EventController@joinEvent')->name('joinEvent');
 Route::get('quitEvent/{id}', 'EventController@quitEvent')->name('quitEvent');
 Route::get('calendarView','EventController@calendarView')->name('calendarView');
 Route::get('viewcalendars','EventController@calendarviews')->name('calendarviews');
+Route::get('onlyJoinEvent','EventController@onlyJoinEvent')->name('onlyJoinEvent');
 
 
