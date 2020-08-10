@@ -64,12 +64,18 @@
                                     <div class="row">
                                         <div class="col-10">
                                             <div class="container" data-toggle="modal" data-title="{{ $event->title }}" data-image="{{ $event->eventPicture }}" data-location="{{ $event->location }}" data-members="{{ $event->numberOfMember }}" data-organizer="{{ $event->organizer }}" data-category="{{ $event->Category['name'] }}" data-decription="{{ $event->description }}" data-startdate="{{ $event->startDate }}" data-users="{{ $users }}" data-starttime="
-                                         @if ($event->endTime < 12)
-                                {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->endTime)->format('h:i') }} AM
-                            @else
-                                {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->endTime)->format('h:i') }} PM
-                            @endif
-                            " data-eventid="{{ $event->id }}" data-user="{{ $event->users->pluck('id') }}" data-target="#exampleModal">
+                                                @if ($event->startTime < 12)
+                                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->startTime)->format('h:i') }} AM
+                                                @else
+                                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->startTime)->format('h:i') }} PM
+                                                @endif
+                                                    "data-endtime="                                            
+                                                @if ($event->endTime < 12)
+                                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->endTime)->format('h:i') }} AM
+                                                @else
+                                                    {{ \Carbon\Carbon::createFromFormat('H:i:s', $event->endTime)->format('h:i') }} PM
+                                                @endif                                              
+                                                "data-eventid="{{ $event->id }}" data-user="{{ $event->users->pluck('id') }}" data-target="#exampleModal">
                                                 <div class="row">
                                                     <div class="col-2 mt-5">
                                                         @if ($event->startTime < 12) <h3>{{ \Carbon\Carbon::createFromFormat('H:i:s', $event->startTime)->format('h:i') }}
