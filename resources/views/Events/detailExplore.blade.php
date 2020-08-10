@@ -43,14 +43,13 @@
       var button      = $(event.relatedTarget)
       var recipient   = button.data('title')
       var category    = button.data('category')
-      var image   = button.data('image')
+      var image       = button.data('image')
       var locations = button.data('location')
       var organizer = button.data('organizer')
       var nbOfMembers = button.data('members')
       var description = button.data('decription')
       var startTime = button.data('starttime')
       var endTime = button.data('endtime')
-      console.log(endTime);
       var startDate = button.data('startdate')
       var users = button.data('users')
    
