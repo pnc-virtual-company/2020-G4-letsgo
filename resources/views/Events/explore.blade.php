@@ -166,8 +166,6 @@
                 // If the checkbox is checked, display the output text
                 if (checkBox.checked == true) {
                 $('#onlyJoinEvent').submit();
-                } else {
-
                 }
             }
         </script>
