@@ -162,10 +162,8 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
-        });
 
-        //search location
-        $(document).ready(function() {
+            //search location
             $("#searchLocation").on("change", function() {
                 var value = $(this).val().toLowerCase();
                 $(".card").filter(function() {
