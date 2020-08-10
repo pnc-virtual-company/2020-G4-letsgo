@@ -63,7 +63,15 @@ var calendarEl = document.getElementById('calendar');
 var calendar = new FullCalendar.Calendar(calendarEl, {
   timeZone: 'UTC',
   initialView: 'dayGridMonth',
-  
+  events:[
+    @foreach($events as $event)
+      {
+        title: '{{$event->title}}: <?php $date = new DateTime($event->start_time); echo date_format($date, 'g:iA');?>',
+        start: '{{$event->startDate}}',
+        end: '{{$event->endDate}}'
+      },
+    @endforeach
+  ] ,
   editable: true,
   selectable: true
 });
