@@ -34,15 +34,20 @@
                 </div>
            
                     <!-- Nav pills -->
-                    <ul class="nav nav-tabs​​ float-right" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#card">CARD</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#calendar">CALENDAR</a>
-                        </li>
-
-                    </ul>
+                    <div class="container">
+                        <div class="row">
+                           <div class="col-12">
+                              <ul class="nav nav-tabs ml" style="float: right;">
+                              <li class="nav-item">
+                                <a class="btn btn-secondary" class="nav-link" href="{{ url('explore') }}"><i class="fa fa-id-card-o" aria-hidden="true">Card</i></a>
+                              </li>&nbsp;
+                              <li class="nav-item">
+                                <a class="btn btn-secondary" class="nav-link" href="{{route('calendarviews')}}"><i class="fa fa-calendar" aria-hidden="true">Calendar</i></a>
+                              </li>
+                              </ul>
+                           </div>
+                        </div>
+                      </div>
               
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -148,16 +153,7 @@
 
     </div>
     <script>
-        //search location
-        $(document).ready(function() {
-            $("#searchLocation").on("change", function() {
-                var value = $(this).val().toLowerCase();
-                $(".card").filter(function() {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            });
-        });
-
+        
         //search event
         $(document).ready(function() {
             $("#searchEvent").on("keyup", function() {

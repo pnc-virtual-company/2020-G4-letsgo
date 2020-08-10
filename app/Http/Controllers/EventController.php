@@ -192,6 +192,9 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.calendar', compact('categories', 'data', 'events'));
     }
-
+    public function calendarviews(){
+        $events = Event::all();
+        return view('Events.calendar',compact('events'));
+    }
     
 }
