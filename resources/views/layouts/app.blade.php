@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="img">
-                                    <img src="{{asset('image/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail" id="image-preview">
+                                    <img src="{{asset('images/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail" id="s-preview">
                                 </div>
                                 <div class="image-upload">
                                     <label for="input-file" class="btn-sm btn-primary m-3">Edit Profile</label>
