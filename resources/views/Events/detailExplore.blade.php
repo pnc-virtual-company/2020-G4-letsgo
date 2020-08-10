@@ -62,7 +62,7 @@
       var modal = $(this)
       modal.find('#title').text(recipient);
       modal.find('#category').text(category);
-      modal.find('#imageDetail').attr('src', "{{asset('/image/')}}/" + image);
+      modal.find('#imageDetail').attr('src', "{{asset('/images/')}}/" + image);
       modal.find('#location_countries').text(locations);
       users.forEach(user => {
         if (user.id == organizer) {

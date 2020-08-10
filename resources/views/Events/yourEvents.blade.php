@@ -34,7 +34,7 @@
                             <p>{{$event->location}}</p>  
                         </div>
                         <div class="col-3">
-                            <img src="{{asset('image/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
+                            <img src="{{asset('images/'.$event->eventPicture)}}" alt="Not Found" class="img img-thumbnail m-3" style="width:150px; height:130px;">
                         </div>
                         <div class="col-3 mt-5">
                             <a href=""
