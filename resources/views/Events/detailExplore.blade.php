@@ -50,6 +50,7 @@
       var description = button.data('decription')
       var startTime = button.data('starttime')
       var endTime = button.data('endtime')
+      console.log(endTime);
       var startDate = button.data('startdate')
       var users = button.data('users')
    
