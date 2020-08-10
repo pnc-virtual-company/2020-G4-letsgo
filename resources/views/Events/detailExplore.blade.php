@@ -43,7 +43,7 @@
       var button      = $(event.relatedTarget)
       var recipient   = button.data('title')
       var category    = button.data('category')
-      var images = button.data('image')
+      var image   = button.data('image')
       var locations = button.data('location')
       var organizer = button.data('organizer')
       var nbOfMembers = button.data('members')
@@ -63,7 +63,7 @@
       var modal = $(this)
       modal.find('#title').text(recipient);
       modal.find('#category').text(category);
-      modal.find('#imageDetail').attr('src', '/image/' + images);
+      modal.find('#imageDetail').attr('src', "{{asset('/image/')}}/" + image);
       modal.find('#location_countries').text(locations);
       users.forEach(user => {
         if (user.id == organizer) {
