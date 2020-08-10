@@ -1,4 +1,7 @@
-@include('layouts.app')
+
+@extends('layouts.app')
+@section('content')
+    
 
 
 
@@ -56,6 +59,7 @@
       </div>
   </div>
 </div>
+@endsection
 <script>
   document.addEventListener('DOMContentLoaded', function() {
 var calendarEl = document.getElementById('calendar');

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('Events.createEvent')
-@include('Events.deleteEvents')
+
 @include('Events.detailExplore')
 
 <div class="container">
@@ -135,8 +134,7 @@
                 <br>
                 <div id="calendar" class="container tab-pane fade"><br>
 
-                    @include('Events.calendar');
-
+                    @yield('content')
                 </div>
 
             </div>
