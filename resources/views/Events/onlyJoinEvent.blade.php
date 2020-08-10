@@ -2,10 +2,10 @@
 @section('content')
 <div id="card" class="container tab-pane active"><br>
 <a href="explore" class="mb-5 btn btn-primary">Back</a>
+<h1>Only event that you joined</h1>
     @foreach ($events as $event)
     @if (count($event->users->pluck('id')) != 0)
     @foreach ($event->users as $user)
-    <h1>Only event that you joined</h1>
     @if ($user->id == auth::id())
     <div class="tab-content">
         <div id="card" class="tab-pane active">
