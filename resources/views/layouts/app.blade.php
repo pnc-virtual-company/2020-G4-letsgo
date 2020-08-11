@@ -120,7 +120,7 @@
                             </div>
                             <div class="col-4">
                                 <div class="img">
-                                    <img src="{{asset('images/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail" id="s-preview">
+                                    <img src="{{asset('images/'.Auth::user()->profile)}}" alt="Not found" class="img-thumbnail" id="image-preview">
                                 </div>
                                 <div class="image-upload">
                                     <label for="input-file" class="btn-sm btn-primary m-3">Edit Profile</label>
@@ -176,10 +176,10 @@
     const inpFile = document.getElementById('input-file');
     const preview = document.getElementById(".img");
     const previewImage = document.querySelector("#image-preview");
+    console.log(previewImage);
 
     inpFile.addEventListener("change", function() {
         const file = this.files[0];
-        console.log(file);
         if (file) {
             const reader = new FileReader();
             reader.addEventListener("load", function() {
