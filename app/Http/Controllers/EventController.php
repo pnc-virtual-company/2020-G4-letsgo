@@ -48,7 +48,7 @@ class EventController extends Controller
             $file = $request->file('eventPicture');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . "." . $extension;
-            $file->move('image/', $filename);
+            $file->move('images/', $filename);
             $event->eventPicture = $filename;
         }
         $event->save();
@@ -79,7 +79,7 @@ class EventController extends Controller
             $file = $request->file('eventPicture');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . "." . $extension;
-            $file->move('image/', $filename);
+            $file->move('images/', $filename);
             $event->eventPicture = $filename;
         }
         $event->save();

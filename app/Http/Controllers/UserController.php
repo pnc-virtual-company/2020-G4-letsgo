@@ -33,7 +33,7 @@ class UserController extends Controller
             $file = $request->file('profile');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . "." . $extension;
-            $file->move('image/', $filename);
+            $file->move('images/', $filename);
             $user->profile = $filename;
         }
         $user->save();
