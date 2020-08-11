@@ -32,7 +32,7 @@
                                 <input type="text" id="category" placeholder="Enter name category here" name="category" class="form-control">
                                 <span id="message" class="text-danger"></span>
                             </div>
-                            <button href="" class="btn btn-default text-primary mt-3 float-right" type="submit">CREATE</button>
+                            <button href="" class="btn btn-default text-primary mt-2 float-right" type="submit"​​​ id="create">CREATE</button>
                             <button href="" class="btn btn-default text-danger mt-3 float-right ml-3" data-dismiss="modal">DISCARD</button>
                         </form>
                     </div>
@@ -76,8 +76,10 @@
                 success:function(message){
                     if(message != ''){
                         $('#message').html('This category already existed.');
+                        $('#create').html('<button href="" class="btn btn-default text-primary float-right" type="submit"​​​ disabled>CREATE</button>');
                     }else{
                         $('#message').html('');
+                        $('#create').html('<button href="" class="btn btn-default text-primary float-right" type="submit"​​​>CREATE</button>');
                     }
                 }
             });
