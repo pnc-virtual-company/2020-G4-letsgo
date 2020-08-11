@@ -12,7 +12,6 @@ class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -23,20 +22,8 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.event', compact('events', 'categories', 'data'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -63,46 +50,11 @@ class EventController extends Controller
         $event->save();
         return redirect('yourEventsView');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Event $event)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Event $event)
-    {
-        //
-    }
-
-
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Event  $event
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function updateEvent(Request $request, $id)
@@ -132,9 +84,9 @@ class EventController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
+     * Remove event
      *
-     * @param  \App\Event  $event
+     * @param  $id is the number
      * @return \Illuminate\Http\Response
      */
     public function deleteEvent($id)
@@ -143,7 +95,10 @@ class EventController extends Controller
         $deleteEvents->delete();
         return back();
     }
-
+    /**
+     * Display Explore event view
+     * @return \Illuminate\Http\Response
+     */
 
 
     public function showExploreEventView()
@@ -155,6 +110,12 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.explore', compact('categories', 'data', 'events', 'users'));
     }
+
+    /**
+     * 
+     *Display your event veiw
+     * @return \Illuminate\Http\Response
+     */
     public function showYourEventView()
     {
         $events = Event::orderBy('startDate')->get();
@@ -163,6 +124,13 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.yourEvents', compact('categories', 'data', 'events'));
     }
+
+    /**
+     * join event
+     *
+     * @param  \App\Event  $id
+     * @return \Illuminate\Http\Response
+     */
     public function joinEvent($id)
     {
         $event = Event::find($id);
@@ -172,7 +140,7 @@ class EventController extends Controller
         return back();
     }
     /**
-     * Remove member of user that joined event.
+     * Quit event from event that joined
      *
      * @param  \ get the specific id of event \\ $id
      * @return \Illuminate\Http\Response
@@ -186,6 +154,11 @@ class EventController extends Controller
         $event->users()->detach();
         return back();
     }
+    /**
+     * Display calendar view
+     * @return \Illuminate\Http\Response
+     */
+
     public function calendarView()
     {
         $events = Event::orderBy('startDate')->get();
@@ -194,11 +167,21 @@ class EventController extends Controller
         $data = json_decode($jsonString, true);
         return view('Events.calendar', compact('categories', 'data', 'events'));
     }
+
+    /**
+     * Show events on calendar
+     * @return \Illuminate\Http\Response
+     */
     public function calendarviews()
     {
         $events = Event::all();
         return view('Events.calendar', compact('events'));
     }
+
+    /**
+     * Check event has been joined
+     * @return \Illuminate\Http\Response
+     */
     public function onlyJoinEvent()
     {
         $events = Event::orderBy('startDate')->get();

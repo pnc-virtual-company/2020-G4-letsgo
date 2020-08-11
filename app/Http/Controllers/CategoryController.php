@@ -15,20 +15,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
+    public function index()
+    {
         $user = User::find(auth::id());
         $categories = Category::all();
-        return view('Categorys.categoryView',compact('categories'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('Categorys.categoryView', compact('categories'));
     }
 
     /**
@@ -39,16 +30,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::id()==1){
+        if (Auth::id() == 1) {
             $category = new Category;
-            $request -> validate([
+            $request->validate([
                 'category' => 'required|unique:categories,name',
             ]);
             $category->name = $request->get('category');
             $category->save();
             return back();
         }
-    
     }
 
     /**
@@ -58,34 +48,13 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function existCategory(Request $request) {
+    public function existCategory(Request $request)
+    {
         $category = $request->get('result');
-        if($request->ajax()){
-            $categoryData = DB::table('categories')->where('name',$category)->get();
+        if ($request->ajax()) {
+            $categoryData = DB::table('categories')->where('name', $category)->get();
             return $categoryData;
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        
     }
 
     /**
@@ -101,21 +70,17 @@ class CategoryController extends Controller
         $category->name = $request->category;
         $category->save();
         return back();
-
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove categories.
      *
-     * @param  \App\Category  $category
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
-    {
-        //
-    }
 
-    public function removeCategory($id){
+    public function removeCategory($id)
+    {
         $category = Category::find($id);
         $category->delete();
         return back();

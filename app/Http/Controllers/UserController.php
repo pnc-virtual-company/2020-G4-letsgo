@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -10,59 +11,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -70,43 +18,44 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {      
+    {
         $user = User::find($id);
         $user->firstName = $request->firstName;
         $user->lastName = $request->lastName;
         $user->gender = $request->sex;
         $user->age = $request->age;
         $user->email = $request->email;
-        if ($request->hasfile('profile')){
+        if ($request->hasfile('profile')) {
             $file = $request->file('profile');
             $extension = $file->getClientOriginalExtension();
-            $filename = time(). ".".$extension;
+            $filename = time() . "." . $extension;
             $file->move('image/', $filename);
             $user->profile = $filename;
         }
         $user->save();
-        return redirect('/home');  
+        return redirect('/home');
     }
-
     /**
-     * Remove the specified resource from storage.
-     *
+     * delete user profile
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteProfile($id)
     {
-        //
-    }
-    public function deleteProfile($id){
         $user = User::find($id);
         $user->profile = "user.png";
         $user->save();
         return redirect('/home');
     }
-    public function changePassword(Request $request){
+    /**
+     * change new password
+     *  @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function changePassword(Request $request)
+    {
         $user = User::find(Auth::id());
-        if($request->newPassword == $request->comfirmPassword){
+        if ($request->newPassword == $request->comfirmPassword) {
             $user->password = Hash::make($request['newPassword']);;
 
             $user->save();
