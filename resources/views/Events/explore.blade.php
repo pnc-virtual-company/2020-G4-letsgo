@@ -55,6 +55,13 @@
             <div class="tab-content">
                 <div id="card" class="container tab-pane active"><br>
                     @foreach ($events as $event)
+                    <?php               
+                    $date = date('Y-m-d');
+                 ?>
+                 @if ( $event->startDate >= $date)
+
+
+
                     @if ($event->organizer != Auth::id())
                     <div class="tab-content">
                         <div id="card" class="tab-pane active">
@@ -83,7 +90,7 @@
                                                             <h3>{{ \Carbon\Carbon::createFromFormat('H:i:s', $event->startTime)->format('h:i') }}
                                                                 PM</h3>
                                                             @endif
-                                                            <p>{{ date('d-m-Y', strtotime($event->startTime)) }}</p>
+                                                            <p>{{\Carbon\Carbon::parse($event->startDate)->format('d/m/Y')}}</p>    
                                                     </div>
                                                     <div class="col-5 text-center mt-4">
                                                         <h5>{{ $event->Category['name'] }}</h5>
@@ -126,8 +133,7 @@
                         </div>
                     </div>
 
-
-
+                    @endif
                     @endif
                     @endforeach
                 </div>
