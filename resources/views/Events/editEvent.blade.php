@@ -86,7 +86,7 @@
     
     var picture = button.data('image') // Extract info from data-* attribute
     
-    var showProfile = "{{asset('image/')}}/" + picture
+    var showProfile = "{{asset('images/')}}/" + picture
     
     const inpFile = document.getElementById('input-file');
     
